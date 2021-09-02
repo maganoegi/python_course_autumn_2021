@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<section data-title='Hello'>
+						<h3>Test Title</h3>
+						<pre><code class='language-python' data-trim data-noescape data-line-numbers='|1-2|15-25|27,29-33'>
+							class Node:
+							def __init__(self, minX, minY, maxX, maxY, depth=0):
+								self._minX = minX
+								self._minY = minY
+								self._maxX = maxX
+								self._maxY = maxY
+								self._depth = depth
+								self._children = []
+								
+							def build(self):
+								strategy = CutStrategies.propose_random_applicable(self)
+								if strategy:
+									self = strategy.apply(self)
+									leaves, _ = self.offspring
+									for leaf in leaves:
+										leaf.build()
+								else:
+									pass
+						
+							@property
+							def offspring(self):
+								stack = [self]
+								leaves = []
+								nodes = []
+						
+								while len(stack) != 0:
+									tail = stack.pop()
+									if tail.left or tail.right:
+										nodes.append(tail)
+										if tail.left: stack.append(tail.left)
+										if tail.right: stack.append(tail.right)
+									else:
+										leaves.append(tail)
+						
+								return leaves, nodes
+						
+							@property
+							def bounds(self):
+								return self._minX, self._minY, self._maxX, self._maxY
+						
+							@property
+							def xlen(self):
+								return self._maxX - self._minX
+						
+							@property
+							def ylen(self):
+								return self._maxY - self._minY
+						
+							@property
+							def depth(self):
+								return self._depth
+							
+							@property
+							def is_depth_even(self):
+								return self.depth % 2 == 0
+						
+							@property 
+							def area(self):
+								return self.xlen * self.ylen
+						
+							@property
+							def children(self):
+								return self._children
+						
+							@children.setter
+							def children(self, lst):
+								self._children = lst
+						</code></pre>
+					</section>
+					<section>Slide 2</section>
+				</section>
+				<section>Slide 2</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
