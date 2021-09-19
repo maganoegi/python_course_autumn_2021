@@ -226,16 +226,21 @@ if __name__ == '__main__':
         HtmlSegment('landing.html'),
         CodeSegment('indentation.py', "En Python, il n'y a pas d'accolades"),
         CodeSegment('toutobjet1.py', "En Python, tout est un objet"),
-        CodeSegment('toutobjet2.py', "Ce qui rend Python très flexible"),
+        CodeSegment('toutobjet2.py', "Ce qui rend Python tres flexible"),
         HtmlSegment('toutobjet3.html'),
+        HtmlSegment('toutobjet4.html'),
         CodeSegment('comments1.py', "Il existe 2 types de commentaires..."),
         CodeSegment('comments2.py', "exemples", '1-14|16-29'),
         HtmlSegment('funcmeth1.html'),
         CodeSegment('funcmeth2.py', "exemples", "4-18|24-36|42-53|60-65|76-86|98-106"),
-        HtmlSegment('dynamictyping.html'),
         HtmlSegment('variables.html'),
+        HtmlSegment('dynamictyping.html'),
+        HtmlSegment('mutable.html'),
+        HtmlSegment('dynamictyping2.html'),
         HtmlSegment('ducktyping.html'),
         CodeSegment('ducktypingexample1.py', "exemple conceptuel", '1-14|15-18|20-34'),
+        HtmlSegment('strictlazy.html'),
+        CodeSegment('strictlazyexample.py', "strict vs lazy evaluation", '1-3|4-12'),
         chapter_path='3_semantics/'
     )
 
