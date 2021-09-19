@@ -222,6 +222,8 @@ if __name__ == '__main__':
         chapter_path='1_introduction/'
     )
 
+    # TODO: Chapter 2.....
+
     semantics_3 = ContainingSegment(
         HtmlSegment('landing.html'),
         CodeSegment('indentation.py', "En Python, il n'y a pas d'accolades"),
@@ -244,10 +246,16 @@ if __name__ == '__main__':
         chapter_path='3_semantics/'
     )
 
+    lang_structure_4 = ContainingSegment(
+        HtmlSegment('landing.html'),
+        chapter_path="4_langstructure/"
+    )
+
     template = ContainingSegment(
         welcome_0,
         introduction_1,
         semantics_3,
+        lang_structure_4,
     )
 
     write_file(index_path, template.compile())
