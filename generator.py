@@ -8,6 +8,8 @@ INDENT = '    '
 
 T = TypeVar('T', bound='IContent')
 
+ROOT = "./course_contents/"
+
 SECTION_OPEN = "\n<section>\n"
 SECTION_CLOSE = "\n</section>\n"
 HTML_OPEN = """<!doctype html>
@@ -58,6 +60,10 @@ BODY_CLOSE = """\n</div>
         // - https://revealjs.com/config/
         Reveal.initialize({
             hash: true,
+            parallaxBackgroundImage: 'https://background-tiles.com/overview/black/patterns/large/1035.png',
+            parallaxBackgroundSize: '300px 300px',
+            parallaxBackgroundHorizontal: 200,
+            parallaxBackgroundVertical: 50,
 
             // Learn about plugins: https://revealjs.com/plugins/
             plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
@@ -77,15 +83,15 @@ def write_file(path: str, content: str) -> None:
     f.close()
 
 class IContent( metaclass=abc.ABCMeta ):
-    @abc.abstractproperty
-    @property
-    def contents(self) -> str:
-        pass
 
-    def build(self):
+    @property
+    def path(self) -> str:
+        return self._path
+
+    def build(self, path: str):
         return "".join(map(lambda x : tw.indent(x, INDENT), [
             SECTION_OPEN,
-            self.contents,
+            self.contents(path),
             SECTION_CLOSE
         ]))
 
@@ -107,13 +113,8 @@ class HtmlSegment( IContent ):
         super().__init__()
         self._path = path
 
-    @property
-    def path(self) -> str:
-        return self._path
-
-    @property
-    def contents(self) -> str:
-        return self.format_html(read_file(self.path))
+    def contents(self, ch_path) -> str:
+        return self.format_html(read_file(ch_path + self.path))
     
     def format_html(self, content: str) -> str:
         return tw.indent(content, INDENT)
@@ -140,10 +141,6 @@ class CodeSegment( IContent ):
         self._title = title
 
     @property
-    def path(self) -> str:
-        return self._path
-
-    @property
     def rule(self) -> str:
         return self._rule if self._rule else ''
 
@@ -151,11 +148,10 @@ class CodeSegment( IContent ):
     def title(self) -> str:
         return self._title
     
-    @property
-    def contents(self):
+    def contents(self, ch_path: str):
         return "\n".join([
             self.format_title(), 
-            self.format_code(read_file(self.path))
+            self.format_code(read_file(ch_path + self.path))
         ]) 
 
     def format_title(self) -> str:
@@ -177,71 +173,67 @@ class ContainingSegment( IContent ):
         >>> tree = ContainingSegment(
         ...     IContent-subclass,
         ...     IContent-subclass,
-        ...     IContent-subclass
+        ...     IContent-subclass,
+        ...     chapter_path="./path_to_chapter/"
         ... )
         >>> output_string = tree.compile()
     """
 
-    def __init__(self, *args: T):
+    def __init__(self, *args: T, chapter_path: str = ""):
         super().__init__()
         self._children = args
+        self._path = ROOT + chapter_path
 
     @property
     def children(self) -> Tuple[T, ...]:
         return self._children
 
-    @property
-    def contents(self) -> str:
-        return "\n".join([c.build() for c in self.children])
+    def contents(self, ch_path: str) -> str:
+        return "\n".join([c.build(self.path) for c in self.children])
 
     def compile(self) -> str:
-        return (
-            HTML_OPEN +
-            tw.indent(HEAD, INDENT) + 
-            tw.indent(BODY_OPEN, INDENT) + 
-            tw.indent("\n".join([c.build() for c in self.children]), INDENT) + 
-            tw.indent(BODY_CLOSE, INDENT) +  
-            HTML_CLOSE
-        )
+        return HTML_OPEN + "".join(map(lambda x : tw.indent(x, INDENT), [
+            HEAD,
+            BODY_OPEN,
+            "\n".join([
+                c.build(self.path) for c in self.children
+            ]),
+            BODY_CLOSE
+        ])) + HTML_CLOSE
 
 if __name__ == '__main__':
     root = "./course_contents/"
     index_path = './index.html'
 
-    rel_path = root + '0_welcome/'
     welcome_0 = ContainingSegment(
-        HtmlSegment(rel_path + 'landing.html'),
-        HtmlSegment(rel_path + 'me.html'),
-        HtmlSegment(rel_path + 'goals.html'),
-        HtmlSegment(rel_path + 'infos.html'),
-        HtmlSegment(rel_path + 'letsgo.html'),
+        HtmlSegment('landing.html'),
+        HtmlSegment('me.html'),
+        HtmlSegment('goals.html'),
+        HtmlSegment('infos.html'),
+        HtmlSegment('letsgo.html'),
+        chapter_path='0_welcome/',
     )
 
-    rel_path = root + '1_introduction/'
     introduction_1 = ContainingSegment(
-        HtmlSegment(rel_path + 'landing.html'),
-        HtmlSegment(rel_path + 'functions.html'),
-        HtmlSegment(rel_path + 'interpreted.html'),
-        HtmlSegment(rel_path + 'interpreted2.html'),
+        HtmlSegment('landing.html'),
+        HtmlSegment('functions.html'),
+        HtmlSegment('interpreted.html'),
+        HtmlSegment('interpreted2.html'),
+        chapter_path='1_introduction/'
     )
 
-    interpreter_2 = ContainingSegment(
-
-    )
-
-    rel_path = root + '3_semantics/'
     semantics_3 = ContainingSegment(
-        HtmlSegment(rel_path + 'landing.html'),
-        CodeSegment(rel_path + 'indentation.py', "En Python, il n'y a pas d'accolades"),
-        CodeSegment(rel_path + 'toutobjet1.py', "En Python, tout est un objet"),
-        CodeSegment(rel_path + 'toutobjet2.py', "Ce qui rend Python très flexible"),
-        HtmlSegment(rel_path + 'toutobjet3.html'),
-        CodeSegment(rel_path + 'comments1.py', "Il existe 2 types de commentaires..."),
-        CodeSegment(rel_path + 'comments2.py', "exemples", '1-14|16-29'),
-        HtmlSegment(rel_path + 'funcmeth1.html'),
-        CodeSegment(rel_path + 'funcmeth2.py', "exemples", "1-14|15-27|28-39|40-45|46-57|58-66"),
-        HtmlSegment(rel_path + 'variables.html'),
-    
+        HtmlSegment('landing.html'),
+        CodeSegment('indentation.py', "En Python, il n'y a pas d'accolades"),
+        CodeSegment('toutobjet1.py', "En Python, tout est un objet"),
+        CodeSegment('toutobjet2.py', "Ce qui rend Python très flexible"),
+        HtmlSegment('toutobjet3.html'),
+        CodeSegment('comments1.py', "Il existe 2 types de commentaires..."),
+        CodeSegment('comments2.py', "exemples", '1-14|16-29'),
+        HtmlSegment('funcmeth1.html'),
+        CodeSegment('funcmeth2.py', "exemples", "1-14|15-27|28-39|40-45|46-57|58-66"),
+        HtmlSegment('variables.html'),
+        chapter_path='3_semantics/'
     )
 
     template = ContainingSegment(
