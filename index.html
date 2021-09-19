@@ -1,114 +1,418 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+        <title>reveal.js</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+        <link rel="stylesheet" href="dist/reset.css">
+        <link rel="stylesheet" href="dist/reveal.css">
+        <link rel="stylesheet" href="dist/theme/black.css">
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>
-					<section data-title='Hello'>
-						<h3>Test Title</h3>
-						<pre><code class='language-python' data-trim data-noescape data-line-numbers='|1-2|15-25|27,29-33'>
-							class Node:
-							def __init__(self, minX, minY, maxX, maxY, depth=0):
-								self._minX = minX
-								self._minY = minY
-								self._maxX = maxX
-								self._maxY = maxY
-								self._depth = depth
-								self._children = []
-								
-							def build(self):
-								strategy = CutStrategies.propose_random_applicable(self)
-								if strategy:
-									self = strategy.apply(self)
-									leaves, _ = self.offspring
-									for leaf in leaves:
-										leaf.build()
-								else:
-									pass
-						
-							@property
-							def offspring(self):
-								stack = [self]
-								leaves = []
-								nodes = []
-						
-								while len(stack) != 0:
-									tail = stack.pop()
-									if tail.left or tail.right:
-										nodes.append(tail)
-										if tail.left: stack.append(tail.left)
-										if tail.right: stack.append(tail.right)
-									else:
-										leaves.append(tail)
-						
-								return leaves, nodes
-						
-							@property
-							def bounds(self):
-								return self._minX, self._minY, self._maxX, self._maxY
-						
-							@property
-							def xlen(self):
-								return self._maxX - self._minX
-						
-							@property
-							def ylen(self):
-								return self._maxY - self._minY
-						
-							@property
-							def depth(self):
-								return self._depth
-							
-							@property
-							def is_depth_even(self):
-								return self.depth % 2 == 0
-						
-							@property 
-							def area(self):
-								return self.xlen * self.ylen
-						
-							@property
-							def children(self):
-								return self._children
-						
-							@children.setter
-							def children(self, lst):
-								self._children = lst
-						</code></pre>
-					</section>
-					<section>Slide 2</section>
-				</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+        <style>
+            a {
+                font-size: 15px;
+                margin: auto 0 0 auto;
+            }
+            li {
+                font-size: 30px;
+                margin-bottom: 25px;
+            }
+            .container {
+                display: flex;
+            }
+            .col {
+                flex: 1;
+            }
+        </style>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+        <!-- Theme used for syntax highlighted code -->
+        <link rel="stylesheet" href="plugin/highlight/monokai.css">
+    </head>
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+
+        <section>
+
+            <section>
+                <div class="container">
+                    <div class="col">
+                        <img src="./media/logo-nomades.png" alt="" width=150 height=150>
+                    </div>
+                    <div class="col">
+                        <img src="./media/logo-python.png" alt="" width=150 height=150>
+                    </div>
+                </div>
+                <h3 class="r-fit-text">COURS PYTHON AVANCé</h3>
+                <h3 class="r-fit-text">Nomades Advanced Technologies</h3>
+                <h3 class="r-fit-text">Automne 2021</h3>
+            </section>
+
+
+            <section>
+                <div class="container">
+                    <!-- <h3 class="r-fit-text">Sergey Platonov</h3> -->
+                    <div class="col">
+                        <img src="./media/me.jpg" alt="" width=350>
+                        <h3>Sergey Platonov</h3>
+                    </div>
+                    <div class="col">
+                        <ul>
+                            <li>Etudiant 3ème année HEPIA</li>
+                            <li>Ingénierie IT - Logiciels et Systèmes Complexes</li>
+                            <li>Expérience en Python: <strong>5+ ans</strong>
+                                <ul>
+                                    <li>HEPIA - langage de choix pour projets</li>
+                                    <li>Projets personnels</li>
+                                    <li>Pictet - solo projet R&D - 9 mois</li>
+                                    <li>CCHE Architects - solo projet R&D - 1 année</li>
+                                    <li>3ème année supervision projets IT à la Junior Entreprise HEPIA</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+
+            <section>
+                <h3>Les buts de ce cours</h3>
+                <ul>
+                    <li>Parcourir ensemble les bases du langage Python3</li>
+                    <li>Apprendre à reflechir comme un dev Python</li>
+                    <li>Apprendre à structurer le code</li>
+                    <li>Prendre des bonnes habitudes lors du codage</li>
+                </ul>
+
+                <br>
+                <br>
+                <a href="www.google.com">source: google.com</a>
+            </section>
+
+
+            <section>
+                <h3>quelques infos pratiques:</h3>
+                <ul>
+                    <li>Appuyez sur 'O' pour avoir une vue d'ensemble sur tout le cours</li>
+                </ul>
+            </section>
+
+
+            <section>
+                <h3 class="r-fit-text">Let's go learn Python</h3>
+            </section>
+
+        </section>
+
+
+        <section>
+
+            <section>
+                <h3>A quoi peut bien servir Python?</h3>
+            </section>
+
+
+            <section>
+                <h3>Python peut être utilisé pour:</h3>
+                <ul>
+                    <li>Serveur Back End</li>
+                    <li>Interfaçage avec d'autres logiciels, permettant construction et intégration des systèmes complexes</li>
+                    <li>Communication avec toutes types de bases de données</li>
+                    <li>Traîtement de Big Data</li>
+                    <li>Machine Learning</li>
+                    <li>Systèmes Embarqués</li>
+                    <li>en vrai... pour tout...</li>
+                </ul>
+
+                <h3 class="r-fit-text">comment cette flexibilité est possible?</h3>
+
+            </section>
+
+
+            <section>
+                <h3 class="r-fit-text">Python est un langage semi-interprété</h3>
+
+                <img src="./media/semii.jpg" alt="">
+            </section>
+
+
+            <section>
+                <h3 class="r-fit-text">comment marche-t-elle, cette compilation?</h3>
+                <img src="./media/semii2.png" alt="">
+                <ul>
+                    <li>le bytecode est stocké dans __pycache__/</li>
+                    <li>cette "precompilation" est la raison pour laquelle Python a la reputation d'être "lent"</li>
+                </ul>
+                <!-- <p>le bytecode est stocké dans __pycache__/</p>
+                <p>cette "precompilation" est la raison pour laquelle Python a la reputation d'être "lent"</p> -->
+
+            </section>
+
+        </section>
+
+
+        <section>
+
+            <section>
+
+                <p>Semantique</p>
+
+            </section>
+
+
+            <section>
+            <h3>En Python, il n'y a pas d'accolades</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers=''>
+        
+                # Pas d'accolades comme en JavaScript
+                # A la place - un DOUBLE POINT avec INDENTATION
+                def incrementer_de_1(x):
+                    x += 1
+                    return x
+                    </code></pre>
+            </section>
+
+
+            <section>
+            <h3>En Python, tout est un objet</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers=''>
+        
+                x = 10
+                type(x)
+                >>> "int"
+
+                def func(x):
+                    return x
+                type(func)
+                >>> "class"
+
+                class MyClass:
+                    pass
+                type(MyClass)
+                >>> "type"
+
+
+                    </code></pre>
+            </section>
+
+
+            <section>
+            <h3>Ce qui rend Python très flexible</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers=''>
+        
+                def func(x):
+                    return x
+
+                y = func
+                y(10)
+                >>> "10"
+                    </code></pre>
+            </section>
+
+
+            <section>
+
+                <h3>par contre, il faut faire gaffe avec cette flexibilité!</h3>
+
+                <ul>
+                    <li>les objets sont de base <strong>MUTABLES</strong>
+                        <ul>
+                            <li>debugger avec id() et type()</li>
+                        </ul>
+                    </li>
+                    <li>les types sont inferés lors de l'execution
+                        <ul>
+                            <li>source de bug ENORME</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <p>nous allons parler des bonnes pratiques en cours de route ;)</p>
+            </section>
+
+
+            <section>
+            <h3>Il existe 2 types de commentaires...</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers=''>
+        
+                # commentaires "de ligne"
+                """
+                commentaires
+                en
+                bloc
+                """
+                    </code></pre>
+            </section>
+
+
+            <section>
+            <h3>exemples</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-14|16-29'>
+        
+
+                def weird_function(y):
+                    """quick explanation on what the function does.
+    
+                    A more elaborate explanation on what the function
+                    does. Here the algorithms can be explained, as 
+                    well as other details. This type of comment 
+                    is called a DOCSTRING.
+
+                    ARGS:
+                        what arguments and types to expect
+
+                    RETURNS:
+                        what type and what that value represents
+                    """
+
+                    # line comment to explain this step, 
+                    # if it's not clear
+                    x = y + 1 
+
+                    # generally, AVOID OVER-COMMENTING:
+                    # a variable/function name must speak for itself
+
+                    return "".join(map(lambda x : tw.indent(x, INDENT), [
+                        SECTION_OPEN,
+                        self.contents,
+                        SECTION_CLOSE
+                    ]))
+
+
+                    </code></pre>
+            </section>
+
+
+            <section>
+                <p>Fonctions et Methodes</p>
+            </section>
+
+
+            <section>
+            <h3>exemples</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-14|15-27|28-39|40-45|46-57|58-66'>
+        
+                # en Mathématiques:     f(x) = x + 1
+                # en Python:            f(x) 
+
+                def f(x):
+                    """mot clé DEF designe une fonction. 
+                    Incremente de 1. 
+                    """
+                    x += 1
+                    return x
+
+                # appel de fonction avec ARGUMENT POSITIONNEL:
+                >>> output = f(1)
+                2
+
+                # ==============================================
+                def f(x):
+                    """mot clé DEF designe une fonction. 
+                    Incremente de 1. 
+                    """
+                    x += 1
+                    return x
+
+                # appel de fonction sans argument réquis:
+                >>> output = f()
+                "TypeError: func() missing 1 required" 
+                "positional argument: x"
+
+                # ==============================================
+                def f(x):
+                    """mot clé DEF designe une fonction. 
+                    Incremente de 1. 
+                    """
+                    x += 1
+                    return x
+
+                # appel de fonction avec ARGUMENT NOMME:
+                >>> output = f(x=2)
+                3
+
+                # ==============================================
+                # fonction LAMBDA, sur une ligne
+                >>> l = lambda x : x + 1
+                >>> l(1)
+                2
+
+                # ==============================================
+                # fonction avec nombre variable d'arguments
+                def sum_all(*args):
+                    result = 0
+                    for arg in args:
+                        result += arg
+    
+                    return result
+    
+                >>> output = sum_all(1, 2, 3, 4, 5, 6, 7, 8, 9)
+                45
+
+                # ==================================================
+                # fonction avec somme variable des variables nommées
+                def format_greeting(**kwargs):
+                    for key, value in kwargs.items():
+                        print("My {0} is {1}".format(key, value))
+
+                >>> format_greeting(name="Sergey")
+                "My name is Sergey"
+
+
+
+    
+
+
+
+                    </code></pre>
+            </section>
+
+
+            <section>
+                <h3>Variables</h3>
+                <div class="container">
+                    <div class="col">
+                        <ul>
+                            <li>Nous permet de stocker des données de types différents</li>
+                            <li>notation affectation: =</li>
+                            <li>notation opération et affectation</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <ul>
+                            <li>x += 1</li>
+                            <li>x -= 1</li>
+                            <li>x *= 1</li>
+                            <li>x **= 1</li>
+                            <li>x /= 1</li>
+                            <li>x //= 1</li>
+                            <li>x %= 1</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+
+    </div>
+    	</div>
+        <script src="dist/reveal.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script>
+            // More info about initialization & config:
+            // - https://revealjs.com/initialization/
+            // - https://revealjs.com/config/
+            Reveal.initialize({
+                hash: true,
+
+                // Learn about plugins: https://revealjs.com/plugins/
+                plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+            });
+        </script>
+    </body>
 </html>
