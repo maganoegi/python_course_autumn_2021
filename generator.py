@@ -231,8 +231,11 @@ if __name__ == '__main__':
         CodeSegment('comments1.py', "Il existe 2 types de commentaires..."),
         CodeSegment('comments2.py', "exemples", '1-14|16-29'),
         HtmlSegment('funcmeth1.html'),
-        CodeSegment('funcmeth2.py', "exemples", "1-14|15-27|28-39|40-45|46-57|58-66"),
+        CodeSegment('funcmeth2.py', "exemples", "4-18|24-36|42-53|60-65|76-86|98-106"),
+        HtmlSegment('dynamictyping.html'),
         HtmlSegment('variables.html'),
+        HtmlSegment('ducktyping.html'),
+        CodeSegment('ducktypingexample1.py', "exemple conceptuel", '1-14|15-18|20-34'),
         chapter_path='3_semantics/'
     )
 

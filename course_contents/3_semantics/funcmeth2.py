@@ -1,4 +1,8 @@
 
+# ==================================================
+
+
+
 # en Mathématiques:     f(x) = x + 1
 # en Python:            f(x) 
 
@@ -13,7 +17,12 @@ def f(x):
 >>> output = f(1)
 2
 
-# ==============================================
+
+
+
+
+
+
 def f(x):
     """mot clé DEF designe une fonction. 
     Incremente de 1. 
@@ -26,7 +35,12 @@ def f(x):
 "TypeError: func() missing 1 required" 
 "positional argument: x"
 
-# ==============================================
+
+
+
+
+
+
 def f(x):
     """mot clé DEF designe une fonction. 
     Incremente de 1. 
@@ -38,13 +52,28 @@ def f(x):
 >>> output = f(x=2)
 3
 
-# ==============================================
+
+
+
+
+
+
+
 # fonction LAMBDA, sur une ligne
 >>> l = lambda x : x + 1
 >>> l(1)
 2
 
-# ==============================================
+
+
+
+
+
+
+
+
+
+
 # fonction avec nombre variable d'arguments
 def sum_all(*args):
     result = 0
@@ -56,7 +85,18 @@ def sum_all(*args):
 >>> output = sum_all(1, 2, 3, 4, 5, 6, 7, 8, 9)
 45
 
-# ==================================================
+
+
+
+
+
+
+
+
+
+
+
+
 # fonction avec somme variable des variables nommées
 def format_greeting(**kwargs):
     for key, value in kwargs.items():
@@ -67,6 +107,11 @@ def format_greeting(**kwargs):
 
 
 
-    
+
+
+
+
+# ==================================================
+
 
 

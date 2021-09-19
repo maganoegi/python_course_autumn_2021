@@ -111,7 +111,7 @@
         <section>
 
             <section>
-                <h3>A quoi peut bien servir Python?</h3>
+                <p>A quoi peut bien servir Python?</p>
             </section>
 
 
@@ -133,7 +133,7 @@
 
 
             <section>
-                <h3 class="r-fit-text">Python est un langage semi-interprété</h3>
+                <h3 class="r-fit-text">Python est un langage semi-interprété - <a href="https://towardsdatascience.com/how-does-python-work-6f21fd197888">source</a></h3>
 
                 <img src="./media/semii.jpg" alt="">
             </section>
@@ -238,7 +238,9 @@
             <h3>Il existe 2 types de commentaires...</h3>
             <pre><code class='language-python' data-trim data-noescape                     data-line-numbers=''>
         
+
                 # commentaires "de ligne"
+
                 """
                 commentaires
                 en
@@ -293,8 +295,12 @@
 
             <section>
             <h3>exemples</h3>
-            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-14|15-27|28-39|40-45|46-57|58-66'>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='4-18|24-36|42-53|60-65|76-86|98-106'>
         
+                # ==================================================
+
+
+
                 # en Mathématiques:     f(x) = x + 1
                 # en Python:            f(x) 
 
@@ -309,7 +315,12 @@
                 >>> output = f(1)
                 2
 
-                # ==============================================
+
+
+
+
+
+
                 def f(x):
                     """mot clé DEF designe une fonction. 
                     Incremente de 1. 
@@ -322,7 +333,12 @@
                 "TypeError: func() missing 1 required" 
                 "positional argument: x"
 
-                # ==============================================
+
+
+
+
+
+
                 def f(x):
                     """mot clé DEF designe une fonction. 
                     Incremente de 1. 
@@ -334,13 +350,28 @@
                 >>> output = f(x=2)
                 3
 
-                # ==============================================
+
+
+
+
+
+
+
                 # fonction LAMBDA, sur une ligne
                 >>> l = lambda x : x + 1
                 >>> l(1)
                 2
 
-                # ==============================================
+
+
+
+
+
+
+
+
+
+
                 # fonction avec nombre variable d'arguments
                 def sum_all(*args):
                     result = 0
@@ -352,7 +383,18 @@
                 >>> output = sum_all(1, 2, 3, 4, 5, 6, 7, 8, 9)
                 45
 
-                # ==================================================
+
+
+
+
+
+
+
+
+
+
+
+
                 # fonction avec somme variable des variables nommées
                 def format_greeting(**kwargs):
                     for key, value in kwargs.items():
@@ -363,11 +405,29 @@
 
 
 
-    
+
+
+
+
+                # ==================================================
+
 
 
 
                     </code></pre>
+            </section>
+
+
+            <section>
+
+                <h3 class="r-fit-text">Les variables n'ont pas de type - il faut les voir comme un pointeur générique - <a href="https://towardsdatascience.com/dynamic-typing-in-python-307f7c22b24e">source</a></h3>
+
+                <div class="r-stack">
+                    <img class="fragment" src="./media/dynamicT1.jpg" alt="">
+                    <img class="fragment" src="./media/dynamicT2.jpg" alt="">
+                    <img class="fragment" src="./media/dynamicT3.jpg" alt="">
+                    <img class="fragment" src="./media/dynamicT4.jpg" alt="">
+                </div>
             </section>
 
 
@@ -377,22 +437,87 @@
                     <div class="col">
                         <ul>
                             <li>Nous permet de stocker des données de types différents</li>
-                            <li>notation affectation: =</li>
-                            <li>notation opération et affectation:</li>
+                            <li>n'ont pas de type - contiennent reference vers memoire</li>
+                            <li>doivent être affectées pour exister</li>
+                            <li>décision sur contenu au run-time</li>
                         </ul>
                     </div>
                     <div class="col">
                         <ul>
-                            <li>x += 1</li>
-                            <li>x -= 1</li>
-                            <li>x *= 1</li>
-                            <li>x **= 1</li>
-                            <li>x /= 1</li>
-                            <li>x //= 1</li>
-                            <li>x %= 1</li>
+                            <li>notations et opérations:
+                                <ul>
+                                    <li>x += 1</li>
+                                    <li>x -= 1</li>
+                                    <li>x *= 1</li>
+                                    <li>x **= 1</li>
+                                    <li>x /= 1</li>
+                                    <li>x //= 1</li>
+                                    <li>x %= 1</li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>
+                <h3 class="r-fit-text">Ceci nous permet d'avoir du typage dynamique</h3>
+
+            </section>
+
+
+            <section>
+
+                <h3>Duck Typing - <a href="https://link.medium.com/CuerPlhEGjb">source</a></h3>
+                <p>"It's a duck if it walks like a duck and quacks like duck"</p>
+                <p><small class="fragment">Typage dynamique est aussi rendu possible grace à "duck typing"</small></p>
+                <p><small class="fragment">TOUT peut devenir TOUT tant qu'on suit la logique suivante:</small></p>
+
+                <ul class="fragment">
+                    <li>Pour utiliser une function -> besoin d'un canard</li>
+                    <li>Pour être un canard -> faut cancaner et marcher (pas très exigeant...)</li>
+                    <li>Du coup, faut implementer ces deux choses pour pouvoir participer.</li>
+                    <li>(en "quelque sort" similaire aux interfaces en JAVA...)</li>
+                </ul>
+
+            </section>
+
+
+            <section>
+            <h3>exemple conceptuel</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-14|15-18|20-34'>
+        
+                class Duck:
+                    def swim(self):
+                        print("I can swim!")
+    
+                    def quack(self):
+                        print("QUAAACK!")
+
+                class RoboticDuck:
+                    def swim(self):
+                        print("I can swim, but I will break...")
+    
+                    def quack(self):
+                        print("execute Q.U.A.A.A.C.K protocol !")
+
+                class Fish:
+                    def swim(self):
+                        print("I can swim!!")
+
+
+                def check_if_duck(animal):
+                    animal.quack()
+                    animal.swim()
+
+                >>> check_if_duck( Duck() )
+                "QUAAACK!"
+                "I can swim!"
+
+                >>> check_if_duck( RoboticDuck() )
+                "execute Q.U.A.A.A.C.K protocol !"
+                "I can swim, but I will break..."
+
+                >>> check_if_duck( Fish() )
+                "AttributeError: 'Fish' object has no attribute 'quack'"
+                    </code></pre>
             </section>
 
         </section>
