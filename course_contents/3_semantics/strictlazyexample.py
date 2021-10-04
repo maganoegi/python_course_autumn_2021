@@ -12,3 +12,5 @@ class DataBaseManager:
     def all_user_accounts(self):
         # do something insanely LONG and HORRIBLE...
         return result
+
+

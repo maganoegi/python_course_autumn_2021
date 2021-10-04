@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-        <title>reveal.js</title>
+        <title>Python Course</title>
 
         <link rel="stylesheet" href="dist/reset.css">
         <link rel="stylesheet" href="dist/reveal.css">
@@ -16,14 +16,18 @@
                 margin: auto 0 0 auto;
             }
             li {
-                font-size: 30px;
-                margin-bottom: 25px;
+                font-size: 20px;
+                margin-bottom: 20px;
             }
             .container {
                 display: flex;
             }
             .col {
                 flex: 1;
+            }
+
+            .column-list {
+                columns: 100px;
             }
         </style>
 
@@ -63,13 +67,22 @@
                         <ul>
                             <li>Etudiant 3ème année HEPIA</li>
                             <li>Ingénierie IT - Logiciels et Systèmes Complexes</li>
-                            <li>Expérience en Python: <strong>5+ ans</strong>
+                            <li>Expérience en Python: <strong>5 ans</strong>
                                 <ul>
                                     <li>HEPIA - langage de choix pour projets</li>
                                     <li>Projets personnels</li>
-                                    <li>Pictet - solo projet R&D - 9 mois</li>
-                                    <li>CCHE Architects - solo projet R&D - 1 année</li>
+                                    <li>Pictet Group - solo projet R&D - 9 mois</li>
+                                    <li>CCHE Architects - solo projet R&D - 1 année (en cours)</li>
                                     <li>3ème année supervision projets IT à la Junior Entreprise HEPIA</li>
+                                </ul>
+                            </li>
+                            <li>Intérêts
+                                <ul>
+                                    <li>Data Science</li>
+                                    <li>Computer Vision</li>
+                                    <li>Signal Processing</li>
+                                    <li>Linear Programming (optimisation)</li>
+                                    <li>Algorithmes Génétiques</li>
                                 </ul>
                             </li>
                         </ul>
@@ -85,18 +98,15 @@
                     <li>Apprendre à reflechir comme un dev Python</li>
                     <li>Apprendre à structurer le code</li>
                     <li>Prendre des bonnes habitudes lors du codage</li>
+                    <li>Concretiser les connaissances avec des exercices/projets</li>
                 </ul>
-
-                <br>
-                <br>
-                <a href="www.google.com">source: google.com</a>
             </section>
 
 
             <section>
                 <h3>quelques infos pratiques:</h3>
                 <ul>
-                    <li>Appuyez sur 'O' pour avoir une vue d'ensemble sur tout le cours</li>
+                    <li>Appuyez sur 'O' pour ouvrir/fermer une vue d'ensemble sur tout le cours</li>
                 </ul>
             </section>
 
@@ -158,6 +168,155 @@
 
             <section>
 
+                <p>Environnements de travail</p>
+            </section>
+
+
+            <section>
+
+                <p>IDE vs Editeurs de texte</p>
+                <div class="container">
+                    <div class="col">
+                        <p><small>IDE - Integrated Development Environment</small></p>
+                        <ul>
+                            <li>Plus facile pour débuter</li>
+                            <li>Tout optimisé pour developper</li>
+                            <li>Necessite de l'apprentissage</li>
+                            <li>Debuggage peut être plus complex</li>
+                            <li>Trop de soutien - dépendance</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <p><small>Editeur de texte</small></p>
+                        <ul>
+                            <li>Facile à mettre en place</li>
+                            <li>Plus legers, flexibles</li>
+                            <li>Gestion de packages manuelle</li>
+                            <li>Prototypage plus façile</li>
+                            <li>Force à apprendre le syntaxe</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+
+            <section>
+
+                <p>IDE et Text Editor Examples</p>
+
+                <div class="container">
+                    <div class="col">
+                        <p><small>IDE</small></p>
+                        <ul>
+                            <li>PyCharm</li>
+                            <li>Jupyter Notebook</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <p><small>Editeur de Texte</small></p>
+                        <ul>
+                            <li>Visual Studio Code (VSCode)</li>
+                            <li>Sublime Text</li>
+                            <li>Atom</li>
+                            <li>Vim</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+
+            <section>
+
+                <p>Problèmes fréquents</p>
+                <ul>
+                    <li>Même Projet - versions Python différentes</li>
+                    <li>Même Projet - versions packages différentes</li>
+                    <li>Packages intallés globalement - lourd</li>
+                </ul>
+                <p>Nous allons utiliser Anaconda - toolkit parfait pour début</p>
+                <ul>
+                    <li>gestion packages</li>
+                    <li>gestion environnements</li>
+                    <li>format unique pour ce cours</li>
+                </ul>
+            </section>
+
+
+            <section>
+
+                <p>Anaconda Setup</p>
+                <img src="./media/anaconda.jpg" alt="">
+            </section>
+
+
+            <section>
+
+                <p>Project Setup</p>
+
+                <img src="./media/projsetup.jpg" alt="">
+            </section>
+
+
+            <section>
+
+                <p>Project Setup</p>
+
+                <div class="r-stack">
+                    <div class="fragment fade-in-then-out">
+                        <p>Navigation interne (cd - cd .. - ls)</p>
+                        <img src="./media/condaterm1.png" alt="">
+                    </div>
+
+                    <div class="fragment fade-in-then-out">
+                        <p>Lister tous les environnements</p>
+                        <img src="./media/condaterm2.png" alt="">
+                    </div>
+
+                    <div class="fragment fade-in-then-out">
+                        <p>Créer nouveau env</p>
+                        <img src="./media/condaterm3.png" alt="">
+                    </div>
+
+                    <div class="fragment fade-in-then-out">
+                        <p>Activer un env</p>
+                        <img src="./media/condaterm4.png" alt="">
+                    </div>
+
+                    <div class="fragment fade-in-then-out">
+                        <p>Lister tous les packages du env</p>
+                        <img src="./media/condaterm5.png" alt="">
+                    </div>
+
+                    <div class="fragment fade-in-then-out">
+                        <p>tester Python</p>
+                        <img src="./media/condaterm6.png" alt="">
+                    </div>
+
+                    <div class="fragment fade-in-then-out">
+                        <p>deactiver le env courant</p>
+                        <img src="./media/condaterm7.png" alt="">
+                    </div>
+
+                    <div class="fragment fade-in-then-out">
+                        <p>Workflow</p>
+                        <img src="./media/workflow.jpg" alt="" width="800px">
+                    </div>
+
+                    <div class="fragment fade-in">
+                        <p>VSCode plugins</p>
+                        <img src="./media/vscodesetup.jpg" alt="" width="400px">
+                    </div>
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <section>
+
+            <section>
+
                 <p>Semantique</p>
 
             </section>
@@ -209,6 +368,10 @@
                 y = func
                 y(10)
                 >>> "10"
+
+                # donc notre fonction est considerée comme 
+                # un "first-class citizen"
+                # nous ouvrant le chemin pour plein de choses utiles
                     </code></pre>
             </section>
 
@@ -602,6 +765,8 @@
                         # do something insanely LONG and HORRIBLE...
                         return result
 
+
+
                     </code></pre>
             </section>
 
@@ -613,6 +778,466 @@
             <section>
                 <p>Structure du langage</p>
 
+            </section>
+
+
+            <section>
+
+                <p>Types numériques</p>
+                <div class="container">
+                    <div class="col">
+                        <p>int</p>
+                    </div>
+                    <div class="col">
+                        <p>long</p>
+                    </div>
+                    <div class="col">
+                        <p>float</p>
+                    </div>
+                    <div class="col">
+                        <p>complex</p>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="col">
+                        <ul>
+                            <li>x + y</li>
+                            <li>x - y</li>
+                            <li>x * y</li>
+                            <li>x / y</li>
+                            <li>x // y</li>
+                            <li>-x</li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <ul>
+                            <li>abs(x)</li>
+                            <li>int(x)</li>
+                            <li>float(x)</li>
+                            <li>complex(re, im)</li>
+                            <li>c.conjugate()</li>
+                            <li>pow(x, y)</li>
+                            <li>x**y</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+
+            <section>
+            <h3>conversion de type - Casting</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-16|31-38'>
+        
+
+                # conversion IMPLICITE
+                >>> x = 12 # int
+                >>> y = 1.0 # float
+
+                >>> type(x * y)
+                float
+
+                >>> type(x % y)
+                float
+
+                # Pourquoi?
+
+                >>> type("Hello World" + x)
+                TypeError
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                # conversion EXPLICITE
+                >>> x = 1.0
+                >>> y = int(x)
+                >>> type(y)
+                int
+
+                >>> str(x)
+                '1.0'
+
+
+
+
+
+
+
+
+
+
+
+                    </code></pre>
+            </section>
+
+
+            <section>
+            <h3>type string</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-3|5-7|9-11|13-18|20-28|30-40'>
+        
+                # Ceci est un string...
+                >>> hello = "Hello"
+                >>> world = 'World'
+
+                # Strings peuvent subir des opérations...
+                >>> combined_string = hello + world
+                "HelloWorld"
+
+                # strings peuvent être formatées...
+                >>> formatted_string = f"{combined_string} misses a space..."
+                "HelloWorld misses a space..."
+
+                >>> list_of_strings = [
+                ...     "hello",    
+                ...     "world"   
+                ... ]
+                >>> " ".join(list_of_strings).upper()
+                "hello world"
+
+                # strings peuvent être considerées comme des listes...
+                >>> first_char = formatted_string[0]
+                "H"
+
+                >>> len(first_char)
+                1
+
+                >>> 'Python' in formatted_string
+                False
+
+                # ... mais ils ont aussi des methodes propres...
+                >>> combined_string.upper()
+                'HELLOWORLD'
+
+                >>> combined_string.lower()
+                'helloworld'
+
+                >>> "hello world         ".strip()
+                "hello world"
+
+                # les '' peuvent être utilisées à l'intérieur de ""
+                    </code></pre>
+            </section>
+
+
+            <section>
+            <h3>boolean et operateurs</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-11|13-23'>
+        
+                # valeur booléenne
+                >>> lower = 12 # variable de type immutable...
+                >>> higher = 13
+                >>> lower < higher
+                True
+
+                >>> lower >= higher
+                False
+
+                >>> 12 == 12.0 # comparaison par reference...
+                True 
+
+                >>> x = True
+                >>> y = False
+
+                >>> x and y
+                False
+
+                >>> x or y 
+                True
+
+                >>> x ^ y # xor (or exclusif)
+                True
+                    </code></pre>
+            </section>
+
+
+            <section>
+
+                <h3>Listes</h3>
+
+                <ul>
+                    <li>collection clé du langage</li>
+                    <li>variable MUTABLE - ATTENTION BUGS</li>
+                    <li>iterable</li>
+                    <li>indexable</li>
+                    <li>plein de modes d'exploitation, car important!</li>
+                </ul>
+
+                <p>Regardons les exemples pour commencer...</p>
+            </section>
+
+
+            <section>
+            <h3>Listes - base</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-2|4-6|8-14|18-23|27-29|32-47'>
+        
+                # initialisons une liste...
+                >>> lst = []
+
+                # ajoutons quelque chose...
+                >>> lst.append(12)
+                [12]
+
+                # et encore, mais de type different...
+                >>> lst.append("douze")
+                [12, "douze"]
+
+                # ATTENTION: ne faites jamais ça s'il vous plaît...
+                # et S'IL FAUT le faire, utilisez les TUPLES:
+                >>> t = (12, "douze")
+
+
+
+                # listes sont ITERABLES...
+                # donc on peut les parcourir par valeur
+                >>> for value in lst:
+                ...     print(value) 
+                12
+                "douze"
+
+
+
+                # elles sont aussi indexables...
+                >>> lst[0]
+                12
+
+
+                # et on peut avoir des listes dans listes
+                >>> nested = [
+                ...     ["uno", "dos", "tres"], 
+                ...     ["eins", "zwei", "polizei"],
+                ...     ["bonjour"]   
+                ... ]
+
+                >>> silly_phrase = [
+                ...     nested[2][0],
+                ...     nested[0][1],
+                ...     nested[1][2]
+                ... ]
+
+                >>> " ".join(silly_phrase)
+                "bonjour dos polizei"
+
+
+
+                "=============="
+
+                    </code></pre>
+            </section>
+
+
+            <section>
+            <h3>Listes - avance</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-11|13-18|20-30'>
+        
+                # SLICING - lst[start : stop : step]
+                >>> lst = [1, 2, 3, 4, 5, 6, 7, 8]
+
+                >>> lst[:]
+                [1, 2, 3, 4, 5, 6, 7, 8]
+
+                >>> lst[1:]
+                [2, 3, 4, 5, 6, 7, 8]
+
+                >>> lst[::-1] # debut à la fin avec un pas négatif
+                [8, 7, 6, 5, 4, 3, 2, 1]
+
+                >>> lst = "HWeolrllod"
+                >>> lst[::2] # pas de 2, commençant par index 0
+                "Hello"
+
+                >>> lst[1::2] # pas de 2, commençant par index 1
+                "World"
+
+                # prendre le dernier et avant-dernier element
+                # et additionner les deux
+                >>> lst = [1, 2, 3, 4, 5, 6, 7, 8]
+                >>> lst[-1] + lst[-2]
+                15
+                # recherche d'index...
+                >>> lst.index(3)
+                2
+
+                >>> lst.index(15)
+                ValueError
+
+                    </code></pre>
+            </section>
+
+
+            <section>
+            <h3>Flux d'execution</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-13|15-22|26-30|34-47|51-65|67-70 '>
+        
+                def scream_the_type(number):
+                    this_type = type(number)
+                    if this_type == int:
+                        print("THIS IS AN INT!!!")
+    
+                    elif this_type == float:
+                        print("THIS IS A FLOAT")
+
+                    else:
+                        print("This is some other type.... might be a string?")
+
+                >>> scream_the_type("this is not a number")
+                "This is some other type.... might be a string?"
+
+                >>> x = 0
+                >>> result = []
+                >>> while x != 10:
+                ...     result.append(x)
+                ...     x += 1
+
+                >>> print(result)
+                [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+
+                # pattern que l'on trouve dans du code materiel...
+                while True:
+                    # do something
+                    if stop_condition:
+                        break
+
+
+
+                # pattern que l'on trouve dans du code analytique...
+                while condition:
+
+                    if do_condition:
+                        # do something
+
+                    elif skip_condition:
+                        continue
+
+                    elif stop_condition:
+                        break
+
+                    else:
+                        pass # do NOTHING
+
+
+
+                # boucle FOR - (quand nombre iterations connu)...
+
+                lst = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+                # parcourir une liste en longueur...
+                for i in range(len(lst)):
+                    print(lst[i])
+
+                # range donne un ITERATEUR de 0 à 9 
+                # mais vu que LIST est deja un ITERABLE... 
+
+                # parcourir la liste par valeur...
+                for value in lst:
+                    print(value)
+
+
+                # parcourir la liste avec indice et valeur...
+                for i, value in enumerate(lst):
+                    print(f"value {value} at index {i}")
+
+
+                    </code></pre>
+            </section>
+
+
+            <section>
+            <h3>exemple - calculatrice</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='44|45-47|1-11'>
+        
+
+
+
+                def ask_user_int(prompt):
+                    result = None
+                    while not result:
+                        try:
+                            result = int(input(prompt))
+
+                        except:
+                            print("Please provide an integer value")
+                            continue
+    
+                    return result
+
+                def ask_user_op(prompt):
+                    result = None
+                    while not result:
+                        raw = input(prompt)
+                        if raw in ["*", "//", "-", "+", "/", "%"]:
+                            result = raw
+                        else:
+                            print("Please select from the following values: \
+                                    * / // % + -")
+                            continue
+
+                    return result
+
+                def select_operation(op_str):
+                    if op_str == "*":
+                        return lambda x, y : x * y
+
+                    elif op_str == "/":
+                        return lambda x, y : x / y
+
+                    elif op_str == "//":
+                        return lambda x, y : x // y
+
+                    elif op_str == "-":
+                        return lambda x, y : x - y
+
+                    elif op_str == "+":
+                        return lambda x, y : x + y
+
+                    else:
+                        return lambda x, y : x % y
+
+                if __name__ == '__main__':
+                    left = ask_user_int("First Number: ")
+                    op_str = ask_user_op("Operation: ")
+                    right = ask_user_int("Second Number: ")
+    
+                    operation = select_operation(op_str)
+
+                    result = operation(left, right)
+
+                    print(f"{left} {op_str} {right} = {result}")
+                    </code></pre>
+            </section>
+
+
+            <section>
+            <h3>Expression ternaire</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers=''>
+        
+                # Expression "simple"...
+                age = 37
+                if age >= 18:
+                    print("la personne est majeure")
+                else:
+                    print("la personne est mineure")
+
+                # expression ternaire...
+                state = 'majeure' if age >= 18 else 'mineure'
+                print(f"la personne est {state}")
+
+                # Permet de faire un test rapide sur 
+                # une condition simple...
+
+                    </code></pre>
             </section>
 
         </section>

@@ -19,7 +19,7 @@ HEAD = """\n<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>reveal.js</title>
+    <title>Python Course</title>
 
     <link rel="stylesheet" href="dist/reset.css">
     <link rel="stylesheet" href="dist/reveal.css">
@@ -31,14 +31,18 @@ HEAD = """\n<head>
             margin: auto 0 0 auto;
         }
         li {
-            font-size: 30px;
-            margin-bottom: 25px;
+            font-size: 20px;
+            margin-bottom: 20px;
         }
         .container {
             display: flex;
         }
         .col {
             flex: 1;
+        }
+
+        .column-list {
+            columns: 100px;
         }
     </style>
 
@@ -222,7 +226,16 @@ if __name__ == '__main__':
         chapter_path='1_introduction/'
     )
 
-    # TODO: Chapter 2.....
+    environments_2 = ContainingSegment(
+        HtmlSegment('landing.html'),
+        HtmlSegment('idevstext.html'),
+        HtmlSegment('idetextexamples.html'),
+        HtmlSegment('cecours.html'),
+        HtmlSegment('condasetup1.html'),
+        HtmlSegment('projectsetup1.html'),
+        HtmlSegment('projectsetup2.html'),
+        chapter_path='2_environments/'
+    )
 
     semantics_3 = ContainingSegment(
         HtmlSegment('landing.html'),
@@ -248,12 +261,24 @@ if __name__ == '__main__':
 
     lang_structure_4 = ContainingSegment(
         HtmlSegment('landing.html'),
+        HtmlSegment('builtinnumerical.html'),
+        CodeSegment('casting.py', "conversion de type - Casting", '1-16|31-38'),
+        CodeSegment('string.py', "type string", '1-3|5-7|9-11|13-18|20-28|30-40'),
+        CodeSegment('bool.py', "boolean et operateurs", '1-11|13-23'),
+        HtmlSegment('lists.html'),
+        CodeSegment('listexamples.py', 'Listes - base', '1-2|4-6|8-14|18-23|27-29|32-47'),
+        CodeSegment('listadvanced.py', 'Listes - avance', '1-11|13-18|20-30'), # TODO
+        CodeSegment('flux.py', "Flux d'execution", '1-13|15-22|26-30|34-47|51-65|67-70 '),
+        CodeSegment('calculator.py', "exemple - calculatrice", '44|45-47|1-11'),
+        CodeSegment('ternary.py', "Expression ternaire"),
+
         chapter_path="4_langstructure/"
     )
 
     template = ContainingSegment(
         welcome_0,
         introduction_1,
+        environments_2,
         semantics_3,
         lang_structure_4,
     )
