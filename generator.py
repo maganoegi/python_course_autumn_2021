@@ -279,7 +279,7 @@ if __name__ == '__main__':
         HtmlSegment("landing.html"),
         CodeSegment("tuples.py", "Tuples", "1-8|10-21|23-35|37-43"),
         CodeSegment("dictionaries.py", "Dictionnaires", "1-11|13-18|20-30|32-38|40-51"),
-        CodeSegment("iterators.py", "Iterateurs", "1-14|20-27|29-40|42-51"),
+        CodeSegment("iterators.py", "Iterateurs", "1-14|20-27|29-40|42-54"),
 
         chapter_path="5_advancedstruct/"
     )

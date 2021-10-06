@@ -51,4 +51,7 @@ reversed(collection)
 zip(*collections)
 filter(predicate, collection)
 
+# comme c'est des "recettes", on ne peut pas les
+# comparer directement... il faut de la logique en plus 
+
 

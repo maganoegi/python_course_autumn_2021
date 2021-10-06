@@ -1366,7 +1366,7 @@
 
             <section>
             <h3>Iterateurs</h3>
-            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers=''>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-14|20-27|29-40|42-54'>
         
                 # pour des raisons de memoire et performance
                 # certaines fonctions retournent des ITERATEURS...
@@ -1390,9 +1390,10 @@
                 # Enchainement: 
                 map(operation, iterator1, ..., iteratorN) -> iterator
 
-                >>> m = map(pow, [1, 2, 3, 4], [1, 2, 3, 4, 5])
+                >>> r = reversed(0, 1, 2, 3, 4)
+                >>> m = map(pow, r, range(10))
                 >>> list(m)
-                [1, 4, 9, 16]
+                [1, 3, 4, 1, 0]
 
 
                 # EXEMPLE:
@@ -1412,6 +1413,16 @@
                 >>> list(m)
                 # OU
                 >>> m.__next__()
+
+                # Les itérateurs importants:
+                map(func, *collections)
+                reversed(collection)
+                zip(*collections)
+                filter(predicate, collection)
+
+                # comme c'est des "recettes", on ne peut pas les
+                # comparer directement... il faut de la logique en plus 
+
 
 
                     </code></pre>
