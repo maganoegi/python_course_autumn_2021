@@ -1306,7 +1306,7 @@
 
             <section>
             <h3>Dictionnaires</h3>
-            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-11|13-18|20-30|32-38|40-51'>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-11|13-18|20-30|32-38|40-51|53-61'>
         
                 # dictionnaires dont des structures
                 # de donnes avec les proprietés suivantes:
@@ -1359,6 +1359,16 @@
                 # mais aussi avec Dict Comprehensions...
                 >>> my_dict = {x : x**2 for x in (0, 1, 2, 3)}
                 {0: 0, 1: 1, 2: 4, 3: 9}
+
+                # parfois une valeur n'existe pas dans un dict...
+                >>> d = dict(a=1, b=2, c=3)
+                >>> d["d"]
+                KeyError: 'd'
+
+                # Il faut alors proposer une valeur par défaut.
+                >>> d = dict(a=1, b=2, c=3)
+                >>> d.get("d", "ma valeur par defaut")
+                "ma valeur par defaut"
 
                     </code></pre>
             </section>

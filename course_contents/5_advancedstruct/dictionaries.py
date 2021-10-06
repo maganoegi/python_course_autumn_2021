@@ -50,3 +50,13 @@ dict_values([..., ..., ...])
 # mais aussi avec Dict Comprehensions...
 >>> my_dict = {x : x**2 for x in (0, 1, 2, 3)}
 {0: 0, 1: 1, 2: 4, 3: 9}
+
+# parfois une valeur n'existe pas dans un dict...
+>>> d = dict(a=1, b=2, c=3)
+>>> d["d"]
+KeyError: 'd'
+
+# Il faut alors proposer une valeur par défaut.
+>>> d = dict(a=1, b=2, c=3)
+>>> d.get("d", "ma valeur par defaut")
+"ma valeur par defaut"
