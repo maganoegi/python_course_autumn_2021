@@ -37,3 +37,16 @@ dict_items([("key_a", "val_a"), (...), (...)])
 # prendre toutes les valeurs
 >>> my_dict.values()
 dict_values([..., ..., ...])
+
+# les dictionaires peuvent être crées...
+>>> my_dict = {
+    "key_a" : "val_a",
+}
+
+>>> my_dict = dict([("key_a", "val_a")])
+
+>>> my_dict = dict(key_a="val_a", ...)
+
+# mais aussi avec Dict Comprehensions...
+>>> my_dict = {x : x**2 for x in (0, 1, 2, 3)}
+{0: 0, 1: 1, 2: 4, 3: 9}
