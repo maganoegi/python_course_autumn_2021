@@ -275,12 +275,21 @@ if __name__ == '__main__':
         chapter_path="4_langstructure/"
     )
 
+    advanced_structure_5 = ContainingSegment(
+        HtmlSegment("landing.html"),
+        CodeSegment("tuples.py", "Tuples", "1-8|10-21|23-35|37-43"),
+        CodeSegment("dictionaries.py", "Dictionnaires"),
+
+        chapter_path="5_advancedstruct/"
+    )
+
     template = ContainingSegment(
         welcome_0,
         introduction_1,
         environments_2,
         semantics_3,
         lang_structure_4,
+        advanced_structure_5,
     )
 
     write_file(index_path, template.compile())
