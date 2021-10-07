@@ -46,7 +46,7 @@ if __name__ == '__main__':
         character=c,
         rotate_by=ROTATION_NB
     ) for c in message])
-
+    
     print(
         encoded_msg if len(arguments) > 1 
                     else encoded_msg == "sbwkrq fdq dovr eh xvhg iru kdfnlqj"

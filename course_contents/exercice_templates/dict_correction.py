@@ -5,13 +5,10 @@
 def create_my_dict(*args):
     keys = []
     values = []
-    for arg in args:
-        key = arg[0]
-        value = arg[1]
+    for i, (key, value) in enumerate(args):
 
         if key in keys:
-            key_index = keys.index(key)
-            values[key_index] = value
+            values[i] = value
         else:
             keys.append(key)
             values.append(value)

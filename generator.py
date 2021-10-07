@@ -267,7 +267,7 @@ if __name__ == '__main__':
         CodeSegment('bool.py', "boolean et operateurs", '1-11|13-23'),
         HtmlSegment('lists.html'),
         CodeSegment('listexamples.py', 'Listes - base', '1-2|4-6|8-14|18-23|27-29|32-47'),
-        CodeSegment('listadvanced.py', 'Listes - avance', '1-11|13-18|20-30'), # TODO
+        CodeSegment('listadvanced.py', 'Listes - avance', '1-11|13-18|20-30|32-38|40-43|45-46|48-52|54-65'), # TODO
         CodeSegment('flux.py', "Flux d'execution", '1-13|15-22|26-30|34-47|51-65|67-70 '),
         CodeSegment('calculator.py', "exemple - calculatrice", '44|45-47|1-11'),
         CodeSegment('ternary.py', "Expression ternaire"),
