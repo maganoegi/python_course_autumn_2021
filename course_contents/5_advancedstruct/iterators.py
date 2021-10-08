@@ -54,4 +54,19 @@ filter(predicate, collection)
 # comme c'est des "recettes", on ne peut pas les
 # comparer directement... il faut de la logique en plus 
 
+# par contre, quand on parcours un objet MAP
+# on ne pourra plus l'utiliser...
+>>> lst = [0, -1, -2, -3, -4]
+>>> m = map(lambda x : abs(x), lst)
+>>> list(m)
+[0, 1, 2, 3, 4]
+>>> list(m)
+[]
+
+# Pourquoi?
+# C'est parce que l'objet map est aussi un GENERATEUR.
+# L'optimisation lui permet de stocker les "recettes" de 
+# generation, mais on peut l'instantier qu'une fois.
+# NOTE: tout generateur est aussi un iterateur.
+
 

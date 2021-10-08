@@ -1471,8 +1471,81 @@
                 # comme c'est des "recettes", on ne peut pas les
                 # comparer directement... il faut de la logique en plus 
 
+                # par contre, quand on parcours un objet MAP
+                # on ne pourra plus l'utiliser...
+                >>> lst = [0, -1, -2, -3, -4]
+                >>> m = map(lambda x : abs(x), lst)
+                >>> list(m)
+                [0, 1, 2, 3, 4]
+                >>> list(m)
+                []
+
+                # Pourquoi?
+                # C'est parce que l'objet map est aussi un GENERATEUR.
+                # L'optimisation lui permet de stocker les "recettes" de 
+                # generation, mais on peut l'instantier qu'une fois.
+                # NOTE: tout generateur est aussi un iterateur.
 
 
+
+                    </code></pre>
+            </section>
+
+
+            <section>
+            <h3>Generators</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-12|9-22|26-36|38-50'>
+        
+                # jusqu'à maintenant nous avons appellé les objets ayant ce
+                # comportement les ITERATEURS. Plus etre plus specifique, ils
+                # s'appellent des GENERATEURS et forment un sous-type des iterateurs.
+
+                # ITERATEURS:
+                    # implementent les methodes __iter__() et __next__()
+                        # on peut donc les parcourir
+
+                # GENERATEURS
+                    # sont des iterateurs
+                    # nous donnent le contrôle sur le mémoire
+                        # grâce au mot-clé YIELD
+
+                def my_generator(n):
+                    for i in range(1, n, 2):
+                        yield i**3
+
+                >>> for i in my_generator(10):
+                ...     print(i)
+                1
+                27
+                125
+                343
+                729
+
+                # une autre manière de créer un generateur est avec une 
+                # expression generatrice. Syntaxe est similaire à une 
+                # comprehension de liste...
+                >>> gen = (i**3 for i in range(1, 10, 2))
+                generator object
+
+                >>> list(gen)
+                [1, 27, 125, 343, 729]
+
+                >>>list(gen)
+                []
+
+                # Quand nous utilisons une fonction pour declarer un generateur
+                # nous reinitialisons ce dernier à chaque fois.
+                # Si on le fait avec une expression - il sera epuisé.
+
+                >>> next(my_generator)
+                1 
+                ......
+                >>> next(my_generator)
+                729
+                >>> next(my_generator)
+                StopIteration error # A EVITER!
+
+                # le boucle for les capture de base, nous devons le faire nous-meme
                     </code></pre>
             </section>
 
