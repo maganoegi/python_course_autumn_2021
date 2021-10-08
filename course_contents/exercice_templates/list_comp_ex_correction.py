@@ -32,5 +32,5 @@ if __name__ == '__main__':
     average_with_initial_len = total_sum / len(start_list)
     print("average: ", average_with_initial_len)
 
-    rounded_down = round(average_with_initial_len)
+    rounded_down = int(average_with_initial_len)
     print("rounded: ", rounded_down) # -> 7324
