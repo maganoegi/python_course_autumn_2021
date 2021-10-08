@@ -281,6 +281,7 @@ if __name__ == '__main__':
         CodeSegment("dictionaries.py", "Dictionnaires", "1-11|13-18|20-30|32-38|40-51|53-61"),
         CodeSegment("iterators.py", "Iterateurs", "1-14|20-27|29-40|42-54"),
         CodeSegment("generators.py", "Generators", "1-12|9-22|26-36|38-50"),
+        CodeSegment("sets.py", "Set & Set Theory"),
 
         chapter_path="5_advancedstruct/"
     )

@@ -1534,7 +1534,7 @@
                 []
 
                 # Quand nous utilisons une fonction pour declarer un generateur
-                # nous reinitialisons ce dernier à chaque fois.
+                # nous reinitialisons ce dernier à chaque fois. # TODO length
                 # Si on le fait avec une expression - il sera epuisé.
 
                 >>> next(my_generator)
@@ -1546,6 +1546,28 @@
                 StopIteration error # A EVITER!
 
                 # le boucle for les capture de base, nous devons le faire nous-meme
+                    </code></pre>
+            </section>
+
+
+            <section>
+            <h3>Set & Set Theory</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers=''>
+        
+                # d'après la théorie des ensembles en maths
+                # (SET THEORY), nous avons aussi le type set...
+                >>> my_set = {1, 2, 3, 4, 5}
+
+                # la particularité de ce type est l'unicité des valeurs
+                # ainsi que les caracteristiques se SET Theory:
+                >>> s1 = {1, 2, 3}
+                >>> s2 = {1, 2}
+                >>> s3 = {4, 5, 6}
+
+                >>> s2 <= s1
+                True # car s2 est un sous-ensemble de s1
+                >>> s2 <= s3
+                False # car s2 n'est pas un sous-ensemble de s3
                     </code></pre>
             </section>
 
