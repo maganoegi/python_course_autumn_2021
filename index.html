@@ -1675,6 +1675,116 @@
 
         </section>
 
+
+        <section>
+
+            <section>
+
+                <p>Objets et Classes</p>
+            </section>
+
+
+            <section>
+
+                <p>
+                    Pourquoi utiliser classes?
+                </p>
+                <ul>
+                    <li>organisation du code plus sophistiquée</li>
+                    <li>meilleure lisibilité de votre code</li>
+                    <li>portabilité</li>
+                    <li>extensibilité</li>
+                    <li>maintenabilité</li>
+                    <li>construction des comportements complexes</li>
+                    <li>expression des concepts plus abstraits/réels</li>
+                </ul>
+
+                <p>quelle est la différence?</p>
+
+                <ul>
+                    <li><strong>Class</strong> - un "dessin" de l'objet</li>
+                    <li><strong>Objet</strong> - une version crée à partir du "dessin"</li>
+                </ul>
+
+
+
+            </section>
+
+
+            <section>
+            <h3>Exemple pour commencer</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-11|13-20|22-25|26-37|39-52|54-56|58-63'>
+        
+                class Person:
+                    def __init__(self, fname: str, age: int):
+                        """CONSTRUCTEUR
+        
+                        Dicte comment un objet doit être construit.
+        
+                        self : mot clé designe appartenance à un objet
+                        self._age : champ privé "_" propre à un objet
+                        fname & age : deux valeurs à stocker"""
+                        self._fname = fname
+                        self._age = age
+
+                    @property
+                    def fname(self) -> str:
+                        """GETTER
+        
+                        self : mot clé designe appartenance à un objet
+                        self._fname : champ privé "_" propre à un objet 
+                        @property : lazy-loading and readability"""
+                        return self._fname
+
+                    @property
+                    def age(self) -> int:
+                        return self._age
+
+                    def __str__(self) -> str:
+                        """Built-in method override
+
+                        vue que tout en python est un objet, ils 
+                        contiennent deja des comportements par défaut.
+                        Il faut alors les "Override" - réecrire.
+
+                        Là - le comportement de transformation en string.
+        
+                        self : mot clé designe appartenance à un objet"""
+                        return f"Person(fname='{self.fname}', \
+                                        age='{self.age}')"
+
+                    def __eq__(self, other: Person) -> bool:
+                        """Built-in method override
+
+                        vue que tout en python est un objet, ils 
+                        contiennent deja des comportements par défaut.
+                        Il faut alors les "Override" - réecrire.
+
+                        Là - le comportement de comparaison.
+
+                        self : mot clé designe appartenance à un objet"""
+                        return (
+                            self.fname == other.fname and 
+                            self.age == other.age
+                        )
+
+                    def say_hi(self) -> None:
+                        """Custom method, proper to the object (self)"""
+                        print(f"Hi! my name is {self.fname}!")
+
+                if __name__ == '__main__':
+                    mike = Person("Mike", 27)
+                    anna = Person(age=25, fname="Anna")
+
+                    mike.say_hi()
+                    anna.say_hi()
+
+    
+                    </code></pre>
+            </section>
+
+        </section>
+
     </div>
     	</div>
         <script src="dist/reveal.js"></script>
@@ -1688,7 +1798,7 @@
             Reveal.initialize({
                 hash: true,
                 parallaxBackgroundImage: 'https://background-tiles.com/overview/black/patterns/large/1035.png',
-                parallaxBackgroundSize: '300px 300px',
+                parallaxBackgroundSize: '727px 727px',
                 parallaxBackgroundHorizontal: 200,
                 parallaxBackgroundVertical: 50,
 

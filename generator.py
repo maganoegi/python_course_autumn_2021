@@ -65,7 +65,7 @@ BODY_CLOSE = """\n</div>
         Reveal.initialize({
             hash: true,
             parallaxBackgroundImage: 'https://background-tiles.com/overview/black/patterns/large/1035.png',
-            parallaxBackgroundSize: '300px 300px',
+            parallaxBackgroundSize: '727px 727px',
             parallaxBackgroundHorizontal: 200,
             parallaxBackgroundVertical: 50,
 
@@ -296,6 +296,14 @@ if __name__ == '__main__':
         chapter_path="6_modules/"
     )
 
+    oop_7 = ContainingSegment(
+        HtmlSegment("landing.html"),
+        HtmlSegment("definitions.html"),
+        CodeSegment("example1.py", "Exemple pour commencer", "1-11|13-20|22-25|26-37|39-52|54-56|58-63"),
+
+        chapter_path="7_oop/"
+    )
+
     template = ContainingSegment(
         welcome_0,
         introduction_1,
@@ -303,7 +311,8 @@ if __name__ == '__main__':
         semantics_3,
         lang_structure_4,
         advanced_structure_5,
-        modules_6
+        modules_6,
+        oop_7
     )
 
     write_file(index_path, template.compile())
