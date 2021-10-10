@@ -286,6 +286,16 @@ if __name__ == '__main__':
         chapter_path="5_advancedstruct/"
     )
 
+    modules_6 = ContainingSegment(
+        HtmlSegment("landing.html"),
+        HtmlSegment("whatismodule.html"),
+        CodeSegment("modulexample.py", "Modules", "1-5|7-19|22-30|32-38|40-42"),
+        HtmlSegment("whatispackage.html"),
+        HtmlSegment("howtomakepackage.html"),
+
+        chapter_path="6_modules/"
+    )
+
     template = ContainingSegment(
         welcome_0,
         introduction_1,
@@ -293,6 +303,7 @@ if __name__ == '__main__':
         semantics_3,
         lang_structure_4,
         advanced_structure_5,
+        modules_6
     )
 
     write_file(index_path, template.compile())

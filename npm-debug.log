@@ -7,7 +7,7 @@
 6 silly lifecycle reveal.js@4.1.3~prestart: no script for prestart, continuing
 7 info lifecycle reveal.js@4.1.3~start: reveal.js@4.1.3
 8 verbose lifecycle reveal.js@4.1.3~start: unsafe-perm in lifecycle true
-9 verbose lifecycle reveal.js@4.1.3~start: PATH: /usr/share/npm/bin/node-gyp-bin:/home/maganoegi/Documents/nomades/python_course_autumn_2021/course/node_modules/.bin:/home/maganoegi/Downloads/dart-sass:/home/maganoegi/Downloads/dart-sass:/home/maganoegi/.local/bin:/home/maganoegi/bin:/usr/lib/jvm/java-1.11.0-openjdk-amd64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/apache-maven-3.6.3/bin:/usr/lib/jvm/jdk-15/bin:/opt/apache-maven-3.6.3/bin:/usr/lib/jvm/jdk-15/bin
+9 verbose lifecycle reveal.js@4.1.3~start: PATH: /usr/share/npm/bin/node-gyp-bin:/home/maganoegi/Documents/nomades/python_course_autumn_2021/course/node_modules/.bin:/home/maganoegi/Downloads/dart-sass:/home/maganoegi/.local/bin:/home/maganoegi/bin:/usr/lib/jvm/java-1.11.0-openjdk-amd64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/apache-maven-3.6.3/bin:/usr/lib/jvm/jdk-15/bin
 10 verbose lifecycle reveal.js@4.1.3~start: CWD: /home/maganoegi/Documents/nomades/python_course_autumn_2021/course
 11 silly lifecycle reveal.js@4.1.3~start: Args: [ '-c', 'gulp serve' ]
 12 info lifecycle reveal.js@4.1.3~start: Failed to exec start script

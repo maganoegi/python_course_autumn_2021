@@ -1573,6 +1573,108 @@
 
         </section>
 
+
+        <section>
+
+            <section>
+
+                <p>Comment organiser son code?</p>
+            </section>
+
+
+            <section>
+
+                <p>Un module contient des elements que l'on veut inclure dans notre codebase:</p>
+                <ul>
+                    <li>fonctions</li>
+                    <li>definitions</li>
+                    <li>classes</li>
+                    <li>constantes</li>
+                </ul>
+
+                <p>il existent 2 types de modules:</p>
+                <ul>
+                    <li>Custom modules - nos fichiers .py</li>
+                    <li>Built-in modules - les modules natifs, qui aident à developper</li>
+                </ul>
+            </section>
+
+
+            <section>
+            <h3>Modules</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-5|7-19|22-30|32-38|40-42'>
+        
+                # importer un built-in module:
+                import random
+
+                >>> random.randint(0, 10)
+                8
+
+                # Importer custom module.
+
+                # DANS lib.py .....
+                def func():
+                    pass
+
+                def other_func():
+                    pass
+
+                # DANS __main__.py .....
+                import lib
+
+                >>> a = lib.func()
+
+
+                # Nous pouvons aussi importer la fonction elle-même...
+                from lib import other_func
+
+                >>> a = other_func()
+
+                # ainsi que la renommer...
+                import lib as thebestLIBever
+                # ou alors
+                from lib import other_func as the_best_f
+
+                # ATTENTION - bonne pratique:
+                    # évitez d'importer la fonction - importez le module.
+                        # rend les sources du code clair.
+    
+                    # quand vous renommez le module avec AS
+                    # verifiez quels sont les noms standards
+                    # pour ce module.
+
+                # Pour rendre des fonctions PRIVEES, ajoutez un _
+                def _private_function():
+                    pass
+                    </code></pre>
+            </section>
+
+
+            <section>
+
+                <h3>Package</h3>
+
+                <p>Un package est une collection de modules. On peut donc
+                    le considerer comme une librairie plus complète.</p>
+
+                <p>La structure du package (dossier) est simple:</p>
+                <ul>
+                    <li>vos fichiers .py (modules)</li>
+                    <li>un fichier __init__.py (souvent vide) pour declaration</li>
+                </ul>
+            </section>
+
+
+            <section>
+
+                <p>Structure d'un package - ici en bleu</p>
+
+                <img src="./media/packageTree.png" alt="">
+
+            </section>
+
+        </section>
+
     </div>
     	</div>
         <script src="dist/reveal.js"></script>
