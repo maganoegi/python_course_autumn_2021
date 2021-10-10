@@ -15,23 +15,25 @@ if __name__ == '__main__':
         [{110, 100, 32}, {109, 101}]
     ]
 
-    first = [x[0] for x in dataset[0]]
+    first = ...
     print(first)
 
-    second = [int(x[1]) for x in dataset[1]]
+    # take the numerical data out and transform to int
+    second = ...
     print(second)
 
-    third = [int(dataset[2][7:10])]
+    # take the numerical data out and transform to int
+    third = ...
     print(third)
 
-    fourth = [int(x) for x in dataset[3]]
+    # take the float data out and transform to int
+    fourth = ...
     print(fourth)
 
-    fifth = [int(x) for x in dataset[4].values()]
+    fifth = ...
     print(fifth)
 
-    sixth = [x for partial in dataset[5] for x in reversed(list(partial))]
-    sixth = [x for partial in dataset[5] for x in list(partial)[::-1]]
+    sixth = ...
     print(sixth)
 
     together = [
