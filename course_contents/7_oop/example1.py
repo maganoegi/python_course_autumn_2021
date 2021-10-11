@@ -56,11 +56,28 @@ class Person:
         """Custom method, proper to the object (self)"""
         print(f"Hi! my name is {self.fname}!")
 
+    @classmethod
+    def calculate_age_difference_between(
+        cls, 
+        p1: Person, 
+        p2: Person
+    ):
+        """CLASS METHOD
+
+        methode qui n'apartient à aucun objet.
+        mais plutot a des classes.
+
+        au lieu de self, contient CLS comme argument. 
+        """
+        return abs(p1.age - p2.age)
+
 if __name__ == '__main__':
     mike = Person("Mike", 27)
     anna = Person(age=25, fname="Anna")
 
     mike.say_hi()
     anna.say_hi()
+
+    age_diff = Person.calculate_age_difference_between(mike, anna)
 
     
