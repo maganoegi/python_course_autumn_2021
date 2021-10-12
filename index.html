@@ -1713,7 +1713,7 @@
 
             <section>
             <h3>Exemple pour commencer</h3>
-            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-11|13-20|22-25|26-37|39-52|54-56|58-67|69-76'>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-11|13-20|22-25|26-37|39-52|54-56|58-71|73-80'>
         
                 class Person:
                     def __init__(self, fname: str, age: int):
@@ -1773,7 +1773,11 @@
                         print(f"Hi! my name is {self.fname}!")
 
                     @classmethod
-                    def calculate_age_difference_between(cls, p1: Person, p2: Person):
+                    def calculate_age_difference_between(
+                        cls, 
+                        p1: Person, 
+                        p2: Person
+                    ):
                         """CLASS METHOD
 
                         methode qui n'apartient à aucun objet.
@@ -1817,6 +1821,22 @@
                         </ul>
                     </li>
                     <li><strong>Polymorphisme</strong> - Même objet peut prendre plusieurs formes</li>
+                </ul>
+            </section>
+
+
+            <section>
+
+                <p>Heritage</p>
+
+                <ul>
+                    <li>Nous permet de "generaliser" des traits/comportements</li>
+                    <li>Crée un lien très fort entre des entités
+                        <ul>
+                            <li>faut faire attention lors de conception</li>
+                            <li>prioritisez la composition! (prochain cours)</li>
+                        </ul>
+                    </li>
                 </ul>
             </section>
 

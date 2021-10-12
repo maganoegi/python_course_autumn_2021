@@ -302,6 +302,7 @@ if __name__ == '__main__':
         CodeSegment("example1.py", "Exemple pour commencer", "1-11|13-20|22-25|26-37|39-52|54-56|58-71|73-80"),
         HtmlSegment("pillars.html"),
         HtmlSegment("inheritance.html"),
+        CodeSegment("inheritance_examples.py", "Types de Generalisation", "1-8|10-22|24-29"),
 
         chapter_path="7_oop/"
     )
