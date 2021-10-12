@@ -1840,6 +1840,45 @@
                 </ul>
             </section>
 
+
+            <section>
+            <h3>Types de Generalisation</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-8|10-22|24-29'>
+        
+                # HERITAGE CLASSE (GENERALISATION)
+                class Animal: pass
+
+                class Dog( Animal ): pass
+
+                class Cat( Animal ): pass
+
+                class BengalCat( Cat ): pass
+
+                # CLASSES ABSTRAITS / INTERFACES
+                import abc
+
+                class Communicates( abc.ABC ):
+                    @abc.abstractmethod
+                    def make_signal(self):
+                        """a CONTRACT to be overwritten by the user"""
+                        pass
+
+                    @abc.abstractmethod
+                    def receive_signal(self):
+                        """a CONTRACT to be overwritten by the user"""
+                        pass
+
+                class MyBluetoothController( Communicates ):
+                    def make_signal(self):  
+                        ... # si on les overwrite pas, ca va pas compiler
+    
+                    def receive_signal(self):
+                        ...
+
+
+                    </code></pre>
+            </section>
+
         </section>
 
     </div>
