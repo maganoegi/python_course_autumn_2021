@@ -29,3 +29,8 @@ class MyBluetoothController( Communicates ):
     def receive_signal(self):
         ...
 
+# fonctionnalités importantes
+>>> super() # evoque la classe parent
+>>> isinstance() # verifie si un objet herite d'une classe
+>>> 
+

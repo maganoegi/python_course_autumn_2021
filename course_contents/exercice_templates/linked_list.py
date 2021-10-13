@@ -17,11 +17,11 @@ class LinkedListNode:
         return self.next is not None
 
     def add_to_tail(self, val: T) -> None:
-        target = self
-        while target.has_next:
-            target = target.next
+        current = self
+        while current.has_next:
+            current = current.next
         
-        target.next = LinkedListNode(val)
+        current.next = LinkedListNode(val)
 
     def add_to_head(self, val: T):
         node = LinkedListNode(val)
@@ -30,20 +30,33 @@ class LinkedListNode:
 
     def __str__(self) -> str:
         accumulator = str(self.val)
-        t = self
-        while t.has_next:
-            t = t.next
-            accumulator += " " + str(t.val)
+        current = self
+        while current.has_next:
+            current = current.next
+            accumulator += " " + str(current.val)
 
         return accumulator
 
+class Animal:
+    def __str__(self):
+        return "Animal"
+
+class Dog( Animal ):
+    def __str__(self):
+        return "Dog"
+
+class Cat( Animal ):
+    def __str__(self):
+        return "Cat"
+
+    
 if __name__ == "__main__":
 
-    llist = LinkedListNode(1)
-    llist.add_to_tail(2)
-    llist.add_to_tail(15)
+    llist = LinkedListNode(Dog())
+    llist.add_to_tail(Cat())
+    llist.add_to_tail(Dog())
 
-    llist = llist.add_to_head(5)
-    llist = llist.add_to_head(17)
+    llist = llist.add_to_head(Animal())
+    llist = llist.add_to_head(Dog())
 
     print(llist)
