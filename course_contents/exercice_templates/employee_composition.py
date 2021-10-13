@@ -1,7 +1,6 @@
 
 import abc
 from typing import Optional
-from dataclasses import dataclass
 
 class Contract(abc.ABC):
     """Represents a contract anda payment process for a particular employeee."""
@@ -106,7 +105,6 @@ def main() -> None:
         f"{sarah.name} landed {sarah_commission.contracts_landed} contracts "
         f"and earned ${sarah.compute_pay()}."
     )
-
 
 if __name__ == "__main__":
     main()
