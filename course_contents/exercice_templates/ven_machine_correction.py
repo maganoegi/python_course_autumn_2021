@@ -3,7 +3,7 @@ from collections import namedtuple
 
 
 def main() -> None:
-    Client = namedtuple("Client", ["first_name", "cash"])
+    Client = namedtuple("Client", ["first_name", "cash", "bought_items"])
 
     snacks = [
         Snickers(price=120),
@@ -22,16 +22,18 @@ def main() -> None:
 
     snack_machine = VendingMachine(id=123, contents = snacks + drinks)
 
-    bob: namedtuple = Client(first_name="Bob", cash=2000)
-    anna: namedtuple = Client(first_name="Anna", cash=2000)
+    bob: namedtuple = Client(first_name="Bob", cash=2000, bought_items=[])
+    anna: namedtuple = Client(first_name="Anna", cash=1000, bought_items=[])
 
     print(f"bob before buying: {bob.cash}")
     bob = VendingMachine.process_order(client=bob, order=Fanta)
     print(f"bob after buying: {bob.cash}")
 
+    [item.open() for item in bob.bought_items]
+
     print(f"anna before buying: {anna.cash}")
     anna = VendingMachine.process_order(client=anna, order=Fanta)
-    print(f"anna after buying: {ana.cash}")
+    print(f"anna after buying: {anna.cash}")
 
 
 if __name__ =="__main__":
