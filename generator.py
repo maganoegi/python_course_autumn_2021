@@ -292,6 +292,7 @@ if __name__ == '__main__':
         CodeSegment("modulexample.py", "Modules", "1-5|7-19|22-30|32-38|40-42"),
         HtmlSegment("whatispackage.html"),
         HtmlSegment("howtomakepackage.html"),
+        CodeSegment("importpackage.py", "Comment utiliser packages", "1-7|9-22|24-30"),
 
         chapter_path="6_modules/"
     )
