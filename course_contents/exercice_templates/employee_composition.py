@@ -57,7 +57,7 @@ class HourlyContract( Contract ):
         self.pay_rate = pay_rate
         self.employer_cost = employer_cost
 
-    def get_payment(self) -> float:
+    def get_payment(self) -> int:
         return self.pay_rate * self.hours_worked + self.employer_cost
 
 class SalariedContract(Contract):
