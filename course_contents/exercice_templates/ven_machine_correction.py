@@ -13,10 +13,10 @@ class Product:
     def price(self):
         return self._price
 
-class Consumable( abc.ABC ):
-    @abc.abstractmethod
+class Consumable:
     def consume(self):
         """ defines the consommation behavior """
+        print(super().get_characteristic() + f" - {type(self).__name__}")
 
 class ProductCaracteristic( abc.ABC ):
     @classmethod
@@ -44,51 +44,30 @@ class Snickers( Product, Consumable, SinglePiece ):
     def __init__(self, price):
         super().__init__(price)
     
-    def consume(self):
-        print(super().get_characteristic())
-
 class Twix( Product, Consumable, DoublePiece ): 
     def __init__(self, price):
         super().__init__(price)
     
-    def consume(self):
-        print(super().get_characteristic())
-
 class Bounty( Product, Consumable, DoublePiece ): 
     def __init__(self, price):
         super().__init__(price)
     
-    def consume(self):
-        print(super().get_characteristic())
-
 class CocaCola( Product, Consumable, Carbonated ): 
     def __init__(self, price):
         super().__init__(price)
     
-    def consume(self):
-        print(super().get_characteristic())
-
 class CocaColaLight( Product, Consumable, Carbonated ): 
     def __init__(self, price):
         super().__init__(price)
     
-    def consume(self):
-        print(super().get_characteristic())
-
 class Fanta( Product, Consumable, Carbonated ): 
     def __init__(self, price):
         super().__init__(price)
     
-    def consume(self):
-        print(super().get_characteristic())
-
 class RamseierNoBubbles( Consumable, StillDrink, Product ): 
     def __init__(self, price):
         super().__init__(price)
     
-    def consume(self):
-        print(super().get_characteristic())
-
 class VendingMachine:
     def __init__(
         self,
@@ -107,6 +86,7 @@ class VendingMachine:
         return self._contents
 
     def get_prices_by_type(self, prod_type: Type[Product]) -> List[int]:
+        """ gives the list of prices of objects of a given type """
         return [p.price for p in self.contents if isinstance(p, prod_type)]
 
     def remove_content_if_exists(
@@ -114,6 +94,7 @@ class VendingMachine:
         prod_type: Type[Product], 
         price: int
     ) -> Optional[Product]:
+        """ removes product with the price from inventory, and returns it """
         for p in self.contents:
             if isinstance(p, prod_type) and p.price == price:
                 self._contents.remove(p)
@@ -132,12 +113,12 @@ class VendingMachine:
         price_to_remove = 0
         if len(targets) != 0:
             price_to_remove = min(targets)
-            removed_item = machine.remove_content_if_exists(
-                order,
-                price_to_remove
+            new_bought_items.append(
+                machine.remove_content_if_exists(
+                    order,
+                    price_to_remove
+                )
             )
-            if removed_item is not None:
-                new_bought_items.append(removed_item)
 
         return Client(
             first_name = client.first_name,
@@ -159,6 +140,7 @@ def main() -> None:
     drinks = [
         CocaCola(price=390),
         CocaCola(price=390),
+        Fanta(price=60),
         CocaColaLight(price=450),
         Fanta(price=120),
         RamseierNoBubbles(price=120)
@@ -180,6 +162,16 @@ def main() -> None:
     [item.consume() for item in bob.bought_items]
 
     print(f"anna before buying: {anna.cash}")
+    anna = VendingMachine.process_order(
+        machine=snack_machine,
+        client=anna, 
+        order=Fanta
+    )
+    anna = VendingMachine.process_order(
+        machine=snack_machine,
+        client=anna, 
+        order=Bounty
+    )
     anna = VendingMachine.process_order(
         machine=snack_machine,
         client=anna, 
