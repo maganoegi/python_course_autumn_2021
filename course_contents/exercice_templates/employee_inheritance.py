@@ -1,6 +1,6 @@
 
-import abc
 
+import abc
 
 class Employee( abc.ABC ):
     """Basic representation of an employee at the company."""
@@ -11,22 +11,27 @@ class Employee( abc.ABC ):
         pass
 
     @abc.abstractmethod
-    def compute_pay(self) -> float:
+    def compute_pay(self) -> int:
         """Compute how much the employee should be paid."""
         pass
-
 
 class HourlyEmployee( Employee ):
     """Employee that's paid based on number of worked hours."""
     def __init__(
         self, 
+        name: str,
         pay_rate:int, 
         hours_worked:int = 0, 
         employer_cost:int = 1000
     ):
+        self._name = name
         self._pay_rate = pay_rate
         self._hours_worked = hours_worked
         self._employer_cost = employer_cost
+
+    @property
+    def name(self) -> str:
+        return self._name
     
     @property
     def pay_rate(self) -> int:
@@ -43,16 +48,21 @@ class HourlyEmployee( Employee ):
     def compute_pay(self) -> int:
         return self.pay_rate * self.hours_worked + self.employer_cost
 
-
 class SalariedEmployee( Employee ):
     """Employee that's paid based on a fixed monthly salary."""
     def __init__(
         self, 
+        name,
         monthly_salary:int, 
         percentage:float = 1.0, 
     ):
+        self._name = name
         self._monthly_salary = monthly_salary
         self._percentage = percentage
+
+    @property
+    def name(self) -> str:
+        return self._name
     
     @property
     def monthly_salary(self) -> int:
@@ -64,7 +74,6 @@ class SalariedEmployee( Employee ):
 
     def compute_pay(self) -> int:
         return self.monthly_salary * self.percentage
-
 
 class Freelancer( Employee ):
     """Freelancer that's paid based on number of worked hours."""
@@ -86,7 +95,6 @@ class Freelancer( Employee ):
 
     def compute_pay(self) -> int:
         return self.pay_rate * self.hours_worked
-
 
 class SalariedEmployeeWithCommission( SalariedEmployee ):
     def __init__(
@@ -113,9 +121,8 @@ class SalariedEmployeeWithCommission( SalariedEmployee ):
     def commission(self) -> int:
         return self._commission
 
-    def compute_pay(self) -> float:
-        return super().compute_pay() + self.commission * self.contracts_landed
-
+    def compute_pay(self) -> int:
+        return super().compute_pay() + (self.commission * self.contracts_landed)
 
 class HourlyEmployeeWithCommission(...):
     NotImplementedError
@@ -127,32 +134,7 @@ class FreelancerWithCommission( Freelancer ):
     def compute_pay(self) -> float:
         return super().compute_pay() + self.commission * self.contracts_landed
 
-
-
-# @dataclass
-# class HourlyEmployeeWithCommission(HourlyEmployee):
-#     """Employee that's paid based on number of worked hours and that gets a commission."""
-
-#     commission: float = 100
-#     contracts_landed: float = 0
-
-#     def compute_pay(self) -> float:
-#         return super().compute_pay() + self.commission * self.contracts_landed
-
-
-# @dataclass
-# class FreelancerWithCommission(Freelancer):
-#     """Freelancer that's paid based on number of worked hours and that gets a commission."""
-
-#     commission: float = 100
-#     contracts_landed: float = 0
-
-#     def compute_pay(self) -> float:
-#         return super().compute_pay() + self.commission * self.contracts_landed
-
-
 def main() -> None:
-    """Main function."""
 
     henry = HourlyEmployee(name="Henry", id=12346, pay_rate=50, hours_worked=100)
     print(
@@ -165,7 +147,6 @@ def main() -> None:
     print(
         f"{sarah.name} landed {sarah.contracts_landed} contracts and earned ${sarah.compute_pay()}."
     )
-
 
 if __name__ == "__main__":
     main()

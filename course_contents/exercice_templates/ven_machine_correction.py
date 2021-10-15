@@ -126,7 +126,6 @@ class VendingMachine:
             bought_items = new_bought_items 
         )
 
-
 def main() -> None:
     Client = namedtuple("Client", ["first_name", "cash", "bought_items"])
 
@@ -179,7 +178,6 @@ def main() -> None:
     )
     print(f"anna after buying: {anna.cash}")
     [item.consume() for item in anna.bought_items]
-
 
 if __name__ =="__main__":
     main()
