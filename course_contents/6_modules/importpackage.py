@@ -4,7 +4,7 @@
 # depuis le __main__.py
 >>> import ui_lib.window as wdw
 
-# si elle contient la fonction display_ui()...
+# si elle contient la fonction display()...
 >>> wdw.display()
 
 # QUELQUES MODULES BUILT-IN importants:

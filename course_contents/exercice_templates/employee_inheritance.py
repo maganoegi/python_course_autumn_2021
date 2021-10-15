@@ -1,5 +1,7 @@
 
 
+
+
 import abc
 
 class Employee( abc.ABC ):
@@ -24,6 +26,7 @@ class HourlyEmployee( Employee ):
         hours_worked:int = 0, 
         employer_cost:int = 1000
     ):
+        # self == this
         self._name = name
         self._pay_rate = pay_rate
         self._hours_worked = hours_worked
@@ -44,7 +47,7 @@ class HourlyEmployee( Employee ):
     @property
     def employer_cost(self) -> int:
         return self._employer_cost
-    
+        
     def compute_pay(self) -> int:
         return self.pay_rate * self.hours_worked + self.employer_cost
 

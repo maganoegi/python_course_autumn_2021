@@ -304,6 +304,7 @@ if __name__ == '__main__':
         HtmlSegment("pillars.html"),
         HtmlSegment("inheritance.html"),
         CodeSegment("inheritance_examples.py", "Types de Generalisation", "1-8|10-22|24-29|31-34"),
+        CodeSegment("astuces_heritage.py", "Astuces Heritage"),
 
         chapter_path="7_oop/"
     )
