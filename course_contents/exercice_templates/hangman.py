@@ -67,18 +67,12 @@ def main():
 
         if user_input in selected_word and user_input not in current_progress:
             # if the proposed letter is new
-            occurences = [
-                i for i, c in enumerate(selected_word) if c == user_input
-            ]
+            occurences = ... # TODO
 
-            current_progress = "".join(
-                user_input if i in occurences and c == "_" else c 
-                for i, c in enumerate(current_progress)
-            )
+            current_progress = ... # TODO
 
             if current_progress == selected_word:
                 print("YOU WON!!!!!!")
-                print(f"Word: {selected_word}")
                 done = True
         
         elif user_input in selected_word and user_input in current_progress:

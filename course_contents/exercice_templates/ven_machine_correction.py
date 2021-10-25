@@ -85,11 +85,11 @@ class VendingMachine:
     def contents(self):
         return self._contents
 
-    def get_prices_by_type(self, prod_type: Type[Product]) -> List[int]:
+    def _get_prices_by_type(self, prod_type: Type[Product]) -> List[int]:
         """ gives the list of prices of objects of a given type """
         return [p.price for p in self.contents if isinstance(p, prod_type)]
 
-    def remove_content_if_exists(
+    def _remove_content_if_exists(
         self, 
         prod_type: Type[Product], 
         price: int
@@ -105,16 +105,16 @@ class VendingMachine:
         cls, 
         machine, 
         client: Client,
-        order: Product
+        order: Type[Product]
     ) -> Client:
         """Processes the clients order, taking cash if product is found"""
         new_bought_items = client.bought_items[:]
-        targets = machine.get_prices_by_type(order)
+        targets = machine._get_prices_by_type(order)
         price_to_remove = 0
         if len(targets) != 0:
             price_to_remove = min(targets)
             new_bought_items.append(
-                machine.remove_content_if_exists(
+                machine._remove_content_if_exists(
                     order,
                     price_to_remove
                 )
@@ -126,8 +126,15 @@ class VendingMachine:
             bought_items = new_bought_items 
         )
 
+def inner(a, b, c):
+    print(a, b, c)
+
+def outer(a, b,c):
+    inner(a, b, c)
+
+
+
 def main() -> None:
-    Client = namedtuple("Client", ["first_name", "cash", "bought_items"])
 
     snacks = [
         Snickers(price=120),

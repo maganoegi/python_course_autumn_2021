@@ -309,6 +309,22 @@ if __name__ == '__main__':
         chapter_path="7_oop/"
     )
 
+    runtime_8 = ContainingSegment(
+        HtmlSegment("landing.html"),
+        HtmlSegment("exception_list.html"),
+
+        chapter_path="8_runtime/"
+    )
+
+    unittest_9 = ContainingSegment(
+        HtmlSegment("landing.html"),
+        HtmlSegment("importance.html"),
+        HtmlSegment("types.html"),
+        HtmlSegment("organisation.html"),
+        CodeSegment("unittestsyntax.py", "Comment utiliser unittest", "1-3|4-9|11-21|23-32"),
+        chapter_path="9_unittest/"
+    )
+
     template = ContainingSegment(
         welcome_0,
         introduction_1,
@@ -317,7 +333,9 @@ if __name__ == '__main__':
         lang_structure_4,
         advanced_structure_5,
         modules_6,
-        oop_7
+        oop_7,
+        runtime_8,
+        unittest_9,
     )
 
     write_file(index_path, template.compile())

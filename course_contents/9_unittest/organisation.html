@@ -1,0 +1,23 @@
+
+
+<p>? Ou placer mes fichiers test dans l'hierarchie?</p>
+<p><small>! à coté de votre MAIN, dans un dossier "tests" ou "validation" ou autre</small></p>
+
+<p><small>quelques règles:</small></p>
+<ul>
+    <li>chaque fichier avec des tests doit comporter le mot "test" au début
+        <ul>
+            <li>test_algebra.py</li>
+            <li>test_scenarios.py</li>
+            <li>test_hangman_functions.py</li>
+        </ul>
+    </li>
+    <li>chaque fonction test doit comporter le mot test au début
+        <ul>
+            <li>def test_function_sum(self):....</li>
+        </ul>
+    </li>
+    <li>ajoutez un __init__.py dans votre package des tests</li>
+    <li>" <strong>python3 -m unittest discover [votre dossier à tester]</strong> " pour lancer la découverte de tous les test unitaires</li>
+
+</ul>
