@@ -325,6 +325,15 @@ if __name__ == '__main__':
         chapter_path="9_unittest/"
     )
 
+    flask_10 = ContainingSegment(
+        HtmlSegment("landing.html"),
+        HtmlSegment("descriptionflask.html"),
+        HtmlSegment("whouses.html"),
+        CodeSegment("setup.py", "mise en place serveur flask basique", ""),
+
+        chapter_path="10_flask/"
+    )
+
     template = ContainingSegment(
         welcome_0,
         introduction_1,
@@ -336,6 +345,7 @@ if __name__ == '__main__':
         oop_7,
         runtime_8,
         unittest_9,
+        flask_10,
     )
 
     write_file(index_path, template.compile())

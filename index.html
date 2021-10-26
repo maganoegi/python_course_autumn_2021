@@ -2031,6 +2031,17 @@
                     <li><strong>securitaires</strong>: est-ce que ma sécurité est toujours en ordre?</li>
                     <li><strong>scenario</strong>: est-ce que toutes les interactions client passent?</li>
                 </ul>
+
+                <p><small>d'autres librairies existent, qui sont plus poussées.</small></p>
+                <ul>
+                    <li>PyTest (le meilleur)</li>
+                    <li>DocTest</li>
+                    <li>Nose 2</li>
+                    <li>Testify</li>
+                    <li>Robot</li>
+                </ul>
+                <p><small>complexité production large echelle, pour ce cours unittest</small></p>
+
             </section>
 
 
@@ -2097,6 +2108,71 @@
                     - self.assertRaisesRegexp(exc, r, fun, args, *kwds)
                     - self.assertItemsEqual(a, b)
                     #  et d'autres...
+                    </code></pre>
+            </section>
+
+        </section>
+
+
+        <section>
+
+            <section>
+
+                <p>Flask</p>
+            </section>
+
+
+            <section>
+
+                <p><small>C'est quoi Flask?</small></p>
+
+                <ul>
+                    <li>MicroWebFramework ecrite en Python <ul>
+                        <li>pas de niveau d'abstraction de la base de données</li>
+                        <li>legère</li>
+                        <li>plein de sous-librairies intégrables -> flexible</li>
+                    </ul></li>
+                </ul>
+
+                <ul>
+                    <li>rapide à apprendre</li>
+                    <li>flexible</li>
+                    <li>puissant</li>
+                </ul>
+            </section>
+
+
+            <section>
+
+                <p><small>Qui utilise Flask?</small></p>
+
+                <ul>
+                    <li>Netflix</li>
+                    <li>Reddit</li>
+                    <li>AirBnB</li>
+                    <li>Lyft</li>
+                    <li>Mozilla</li>
+                    <li>Uber</li>
+                </ul>
+            </section>
+
+
+            <section>
+            <h3>mise en place serveur flask basique</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers=''>
+        
+                # on import le module flask...
+                import flask
+
+                # annonce de la variable globale de l'application
+                app = flask.Flask(__name__)
+
+                @app.route('/')
+                def home():
+                    print("notre première route est definie")
+
+                if __name__ == '__main__':
+                    app.run(debug=True)
                     </code></pre>
             </section>
 

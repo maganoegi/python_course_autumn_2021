@@ -2,6 +2,7 @@
 
 from termgamelib.terminalgame import TerminalGame
 import random
+from typing import List
 
 class Hangman( TerminalGame ):
     HANGMAN_PICS = ['''
@@ -62,6 +63,20 @@ class Hangman( TerminalGame ):
         print(cls.HANGMAN_PICS[cls.error_count])
         print(cls.current_progress)
 
+
+    @classmethod
+    def open_underscores(
+        cls, 
+        hidden_string: str, 
+        letter_occurences: List[int],
+        user_input: str
+    ) -> str:
+        return "".join(
+                    user_input if i in letter_occurences and c == "_" else c 
+                    for i, c in enumerate(hidden_string)
+                )
+
+
     @classmethod
     def play(cls) -> None:
         while not cls.done:
@@ -77,9 +92,10 @@ class Hangman( TerminalGame ):
                     i for i, c in enumerate(cls.selected_word) if c == user_input
                 ]
 
-                cls.current_progress = "".join(
-                    user_input if i in occurences and c == "_" else c 
-                    for i, c in enumerate(cls.current_progress)
+                cls.current_progress = cls.open_underscores(
+                    hidden_string=cls.current_progress,
+                    letter_occurences=occurences,
+                    user_input=user_input,
                 )
 
                 if cls.current_progress == cls.selected_word:
