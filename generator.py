@@ -362,3 +362,4 @@ if __name__ == '__main__':
     write_file(index_path, template.compile())
 
     print(template.compile())
+

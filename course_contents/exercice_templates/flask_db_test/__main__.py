@@ -1,57 +1,59 @@
 
+
+
+
+
 import flask
+from sqlalchemy.orm import sessionmaker
+from db_setup import BookORM, engine, Book
 
 app = flask.Flask(__name__)
 
-class Book:
-    def __init__(
-        self,
-        title: str,
-        author: str,
-        isbn: str
-    ):
-        self._title = title,
-        self._author = author,
-        self._isbn = isbn
+# création de notre session (connection) à notre base de données...
+# evite des conflits au niveau des connections simultannées
+DBSession = sessionmaker(bind=engine)
+# TOUT SE PASSE A TRAVERS DE CETTE VARIABLE
+session = DBSession
 
 @app.route("/")
 @app.route("/books")
 def get_books():
-    return flask.redirect(flask.url_for("dashboard"))
+    # query la table definie par le ORM, et choppe toutes les valeurs
+    session.query(BookORM).all()
 
-@app.route("/dashboard")
-def login():
-    return "test"
+    # retourne une reponse bidon, avec un code 200 (réussite)
+    return flask.make_response("All good", 200)
 
-@app.errorhandler(404)
-def not_found():
-    """ Page not found. """
-    return flask.make_response(flask.render_template("400.html"), 404)
+@app.route("/books/add/<str:title>/<author>/<genre>")
+def add_book(title: str, author, genre):
+    
+    new_book = Book(title, author, genre=genre)
 
-@app.route("/books/new/", methods=['GET', 'POST'])
-def add_books():
-    if flask.request == 'POST':
-        # si communication se passe via des formulaire (form) html
-        title = flask.request.form['title']
-        author = flask.request.form['author']
-        isbn = flask.request.form['isbn']
+    # do some processing on the book data
 
-        b = Book(title, author, isbn)
-        return title+author+isbn
-    else:
-        # get extract vars
-        # ajout via POSTMAN (logociel de interfacage http)
-        return "none"
+    # crée le mapping relationnel à partir de book
+    orm = new_book.orm()
 
-@app.route("/books/<int:book_id>/delete")
-def del_books(book_id):
-    """ deletes the book with the id from the database """
-    print(book_id)
-    return str(book_id)
+    # ajoute localement
+    session.add(orm)
 
-@app.route("/books/edit/")
-def edit_books():
-    pass
+    # synchronise
+    session.commit()
+
+    return flask.make_response("Book added and saved", 200)
+
+@app.route("/books/delete/<int:book_id>")
+def add_book(book_id):
+    # trouve le livre par id dans le ORM
+    book_to_delete = session.query(BookORM).filter_by(id=book_id)
+
+    # supprime cet element dans le ORM
+    session.delete(book_to_delete)
+
+    # synchronise
+    session.commit()
+
+    return flask.make_response("book deleted", 200)
 
 
 if __name__ == "__main__":
