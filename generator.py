@@ -4,12 +4,11 @@ from typing import List, TypeVar, Optional, Tuple
 import textwrap as tw
 import abc
 
-INDENT = '    '
 
 T = TypeVar('T', bound='IContent')
 
+INDENT = '    '
 ROOT = "./course_contents/"
-
 SECTION_OPEN = "\n<section>\n"
 SECTION_CLOSE = "\n</section>\n"
 HTML_OPEN = """<!doctype html>
@@ -329,9 +328,20 @@ if __name__ == '__main__':
         HtmlSegment("landing.html"),
         HtmlSegment("descriptionflask.html"),
         HtmlSegment("whouses.html"),
-        CodeSegment("setup.py", "mise en place serveur flask basique", ""),
+        CodeSegment("setup.py", "mise en place serveur flask basique", "1-12"),
+        CodeSegment("routes.py", "Routes", "1-10|12-22|25-33|35-39|43-52|54-61|63-75|77-83|86-102|104-111|113-119|121-127"),
 
         chapter_path="10_flask/"
+    )
+
+    sqlalchemy_11 = ContainingSegment(
+        HtmlSegment("landing.html"),
+        HtmlSegment("whatis.html"),
+        HtmlSegment("dbtypes.html"),
+        HtmlSegment("sql.html"),
+        HtmlSegment("sqlinpython.html"),
+
+        chapter_path="11_sqlalchemy/"
     )
 
     template = ContainingSegment(
@@ -346,6 +356,7 @@ if __name__ == '__main__':
         runtime_8,
         unittest_9,
         flask_10,
+        sqlalchemy_11,
     )
 
     write_file(index_path, template.compile())

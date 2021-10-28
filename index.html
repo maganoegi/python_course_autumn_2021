@@ -2159,7 +2159,7 @@
 
             <section>
             <h3>mise en place serveur flask basique</h3>
-            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers=''>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-12'>
         
                 # on import le module flask...
                 import flask
@@ -2174,6 +2174,247 @@
                 if __name__ == '__main__':
                     app.run(debug=True)
                     </code></pre>
+            </section>
+
+
+            <section>
+            <h3>Routes</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-10|12-22|25-33|35-39|43-52|54-61|63-75|77-83|86-102|104-111|113-119|121-127'>
+        
+                # DEFINITION DES ROUTES ET VIEWS..
+                import flask
+
+                app = flask.Flask(__name__)
+
+                @app.route("/")
+                @app.route("/home")
+                @app.route("/index")
+                def  home():
+                    """ definition of the ROOT route and the 
+                    associated behaviour """
+
+                # ROUTE HTTP METHODS...
+                # par defaut, flask travaille avec les methodes GET...
+                # pour travailler avec POST, faul le specifier.
+                @app.route('/api/v1/users/', methods=['GET', 'POST', 'PUT'])
+                def users():
+                    """ logic that allows us to return the users... """
+                    if flask.request == 'POST':
+                        # si communication se passe via des formulaires
+                        name = flask.request.form['name']
+                        age = flask.request.form['age']
+
+
+                @app.route('/user/[username]')
+                def profile(username):
+                    """ get a specific user """
+
+
+                @app.route('/[int:year]/[int:month]/[title]')
+                def article(year, month, title):
+                    """ reponse a une route dynamique -> 
+                    variables multiples"""
+
+                # ROUTE RESPONSES...
+                # il y a 3 types de reponses possibles:
+                    # Render Page Template
+                    # Créer un response object
+                    # Redirection à un autre vue
+
+
+
+                # RENDER PAGE TEMPLATE....
+                @app.route("/")
+                def home():
+                    """Serve homepage template
+
+                    Flask va regarder dans notre 'templates/' folder, 
+                    qui doit se trouver 
+                    a coté de notre __main__.py
+                    """
+                    return flask.render_template("index.html")
+
+                @app.route("/")
+                def home():
+                    """On peut aussi lui donner des variables...."""
+                    return flask.render_template(
+                        'index.html',
+                        title='Flask-Login.',
+                        body="You are now logged in!"
+                    )
+
+                # CREER UN RESPONSE OBJECT 
+                @app.route("/api/v2/test_response")
+                def users():
+                    """ Si on construit un endpoint purement informatif 
+                    (ou on cherche pas a retourner des pages) 
+                    nous allons alors construire des reponses"""
+
+                    headers = {"Content-Type": "application/json"}
+                    return flask.make_response(
+                        'My Processes Data',
+                        200,
+                        headers=headers
+                    )
+
+                # REDIRECTION ENTRE DES VIEWS
+                @app.route("/login")
+                def login():
+                    """ va nous rediriger vers dashboard.html 
+                    pour le login """
+
+                    return flask.redirect(flask.url_for('dashboard'))
+
+
+                # REQUEST OBJECT
+                """ 
+                    * request.method:
+                        POST, GET, PUT, DELETE
+                    * request.args : 
+                        des variables nommées
+                    * request.data :
+                        retourne le BODY qui  fait partie du message
+                    * request.form : 
+                        vous permet de travailler des formulaires
+                    * request.headers : 
+                        HTTP response headers
+                """
+
+
+
+
+
+                # Error Handling
+                @app.errorhandler(404)
+                def not_found():
+                    """Page not found."""
+                    return flask.make_response(
+                        flask.render_template("404.html"),
+                        404
+                     )
+
+                @app.errorhandler(400)
+                def bad_request():
+                    """Bad request."""
+                    return flask.make_response(
+                        flask.render_template("400.html"),
+                        400
+                    )
+
+                @app.errorhandler(500)
+                def server_error():
+                    """Internal server error."""
+                    return flask.make_response(
+                        flask.render_template("500.html"),
+                        500
+                    )
+                    </code></pre>
+            </section>
+
+        </section>
+
+
+        <section>
+
+            <section>
+
+                <p>Bases de Données et SQLAlchemy</p>
+            </section>
+
+
+            <section>
+
+                <p><small>Base de données?</small></p>
+                <ul>
+                    <li><strong>C'est quoi? </strong>lieu de stockage de données</li>
+                    <li><strong>Comment? </strong>Engin de gestion de données</li>
+                    <li><strong>Examples? </strong>
+                    <ul>
+                        <li>MySQL</li>
+                        <li>PostgreSQL</li>
+                        <li>Oracle</li>
+                        <li>Microsoft SQL Server</li>
+                        <li>SQLite</li>
+                        <li>ElasticSearch</li>
+                        <li>Google Firebase</li>
+                        <li>.txt</li>
+                        <li>.json</li>
+                        <li>Excel</li>
+                        <li>...</li>
+                    </ul></li>
+                </ul>
+            </section>
+
+
+            <section>
+
+                <p><small>Types de Bases de données?</small></p>
+
+                <ul>
+                    <li><strong>Normalisées: </strong>pas de redondances dans la structure
+                    <ul>
+                        <li>Rapides</li>
+                        <li>Plus difficiles de concevoir</li>
+                        <li>Efficaces</li>
+                    </ul></li>
+
+                    <li><strong>Denormalisées: </strong>redondances dans la structure
+                        <ul>
+                            <li>Plus lentes</li>
+                            <li>Flexibilité</li>
+                            <li>Autres Use Cases</li>
+                        </ul></li>
+    
+
+                </ul>
+
+            </section>
+
+
+            <section>
+
+                <p><small>SQL est un language de requête pour interagir avec une base de données NORMALISEE qui le supporte</small></p>
+
+                <ul>
+                    <li>MySQL</li>
+                    <li>PostgreSQL</li>
+                    <li>Oracle</li>
+                    <li>Microsoft SQL Server</li>
+                    <li>SQLite</li>
+                </ul>
+
+                <p><small>exemple:</small></p>
+                <p><small>SELECT nom_du_champ FROM nom_du_tableau </small></p>
+            </section>
+
+
+            <section>
+
+                <p><small>Comment allons-nous travailler avec?</small></p>
+                <ul>
+                    <li>librairies comme sqlite3 et mysql
+                        <ul>
+                            <li>pas très portable car injection des requetes</li>
+                            <li>code peu lisible</li>
+                            <li>pour rendre lisible, besoin d'une quantité ENORME des classes/fonctions</li>
+                            <li>parfait pour des petites applications</li>
+                        </ul>
+                    </li>
+                    <li>utiliser un ORM, comme SQLAlchemy
+                        <ul>
+                            <li>ORM - Object Relational Mapping
+                                <ul>
+                                    <li>Permet de faire abstraction des langages de requête SQL</li>
+                                    <li>et penser purement en termes de Python</li>
+                                </ul>
+                            </li>
+                            <li>extensible</li>
+                            <li>utilise la meme logique que nous avons vu dans les classes et objets pour representer des tables, lignes et champs</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <p><small>NOTE: utilisez pas une base de données si vous en avez pas besoin... un fichier JSON ou excel ou meme txt est un choix valable! C'est pas gênant!</small></p>
             </section>
 
         </section>

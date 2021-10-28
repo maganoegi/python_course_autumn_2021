@@ -1,0 +1,26 @@
+
+<p><small>Comment allons-nous travailler avec?</small></p>
+<ul>
+    <li>librairies comme sqlite3 et mysql
+        <ul>
+            <li>pas très portable car injection des requetes</li>
+            <li>code peu lisible</li>
+            <li>pour rendre lisible, besoin d'une quantité ENORME des classes/fonctions</li>
+            <li>parfait pour des petites applications</li>
+        </ul>
+    </li>
+    <li>utiliser un ORM, comme SQLAlchemy
+        <ul>
+            <li>ORM - Object Relational Mapping
+                <ul>
+                    <li>Permet de faire abstraction des langages de requête SQL</li>
+                    <li>et penser purement en termes de Python</li>
+                </ul>
+            </li>
+            <li>extensible</li>
+            <li>utilise la meme logique que nous avons vu dans les classes et objets pour representer des tables, lignes et champs</li>
+        </ul>
+    </li>
+</ul>
+
+<p><small>NOTE: utilisez pas une base de données si vous en avez pas besoin... un fichier JSON ou excel ou meme txt est un choix valable! C'est pas gênant!</small></p>
