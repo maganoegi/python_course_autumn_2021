@@ -344,6 +344,13 @@ if __name__ == '__main__':
         chapter_path="11_sqlalchemy/"
     )
 
+    data_analysis_12 = ContainingSegment(
+        HtmlSegment("landing.html"),
+        HtmlSegment("why.html"),
+
+        chapter_path="12_analysis/"
+    )
+
     template = ContainingSegment(
         welcome_0,
         introduction_1,
@@ -357,6 +364,7 @@ if __name__ == '__main__':
         unittest_9,
         flask_10,
         sqlalchemy_11,
+        data_analysis_12,
     )
 
     write_file(index_path, template.compile())

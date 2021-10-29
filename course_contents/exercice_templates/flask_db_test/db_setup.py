@@ -32,6 +32,8 @@ class BookORM( Base ):
     author = Column(String(250), nullable=False)
     genre = Column(String(250))
 
+
+
 class Book:
     def __init__(self, title: str, author: str, genre: str):
         self._title = title
