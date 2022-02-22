@@ -230,8 +230,8 @@ if __name__ == '__main__':
         HtmlSegment('idevstext.html'),
         HtmlSegment('idetextexamples.html'),
         HtmlSegment('cecours.html'),
-        HtmlSegment('condasetup1.html'),
-        HtmlSegment('projectsetup1.html'),
+        # HtmlSegment('condasetup1.html'),
+        # HtmlSegment('projectsetup1.html'),
         HtmlSegment('projectsetup2.html'),
         chapter_path='2_environments/'
     )
@@ -361,10 +361,10 @@ if __name__ == '__main__':
         modules_6,
         oop_7,
         runtime_8,
-        unittest_9,
-        flask_10,
-        sqlalchemy_11,
-        data_analysis_12,
+        # unittest_9,
+        # flask_10,
+        # sqlalchemy_11,
+        # data_analysis_12,
     )
 
     write_file(index_path, template.compile())

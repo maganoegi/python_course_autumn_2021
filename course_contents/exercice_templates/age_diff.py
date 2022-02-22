@@ -1,0 +1,106 @@
+
+
+from typing import List
+
+class Person:
+    def __init__(self, fname: str, age: int):
+        """CONSTRUCTEUR
+ 
+        Dicte comment un objet doit être construit.
+ 
+        self : mot clé designe appartenance à un objet
+        self._age : champ privé "_" propre à un objet
+        fname & age : deux valeurs à stocker"""
+        self._fname = fname
+        self._age = age
+ 
+    @property
+    def fname(self) -> str:
+        """GETTER
+ 
+        self : mot clé designe appartenance à un objet
+        self._fname : champ privé "_" propre à un objet 
+        @property : lazy-loading and readability"""
+        return self._fname
+ 
+    @property
+    def age(self) -> int:
+        return self._age
+ 
+    def __str__(self) -> str:
+        """Built-in method override
+ 
+        vue que tout en python est un objet, ils 
+        contiennent deja des comportements par défaut.
+        Il faut alors les "Override" - réecrire.
+ 
+        Là - le comportement de transformation en string.
+ 
+        self : mot clé designe appartenance à un objet"""
+        return f"Person(fname='{self.fname}', \
+                        age='{self.age}')"
+ 
+    def __eq__(self, other: 'Person') -> bool:
+        """Built-in method override
+ 
+        vue que tout en python est un objet, ils 
+        contiennent deja des comportements par défaut.
+        Il faut alors les "Override" - réecrire.
+ 
+        Là - le comportement de comparaison.
+ 
+        self : mot clé designe appartenance à un objet"""
+        return (
+            self.fname == other.fname and 
+            self.age == other.age
+        )
+ 
+    def say_hi(self) -> None:
+        """Custom method, proper to the object (self)"""
+        print(f"Hi! my name is {self.fname}!")
+ 
+    def calculate_age_difference_with(self, other: 'Person') -> int:
+        return abs(other.age - self.age)
+
+    @classmethod
+    def calculate_age_difference_between( 
+        cls, 
+        p1: 'Person', 
+        p2: 'Person'
+    ):
+        """CLASS METHOD
+ 
+        methode qui n'apartient à aucun objet.
+        mais plutot a des classes.
+ 
+        au lieu de self, contient CLS comme argument. 
+        """
+        return p1.calculate_age_difference_with(p2)
+
+def calculate_average(collection):
+    return sum(collection) / len(collection)
+
+class Population:
+    def __init__(self, persons: List[Person]):
+        self._persons = persons
+
+    @property
+    def persons(self):
+        return self._persons
+
+    @property
+    def average_age(self):
+        return calculate_average([p.age for p in self.persons])
+    
+
+
+if __name__ == '__main__':
+    mike = Person("Mike", 27)
+    anna = Person(age=25, fname="Anna")
+ 
+    mike.say_hi()
+    anna.say_hi()
+ 
+    age_diff = Person.calculate_age_difference_between(mike, anna)
+
+    age_diff = mike.calculate_age_difference_with(anna)
